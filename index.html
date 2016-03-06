@@ -6,9 +6,52 @@
 <link href="css/metro.min.css" rel="stylesheet" type="text/css">
 <link href="css/metro-responsive.min.css" rel="stylesheet" type="text/css">
 <link href="css/metro-icons.min.css" rel="stylesheet" type="text/css">
+<!-- <script type="text/javascript" src="cordova.js"></script> -->
 </head>
 
-<body>
+<body onload="bodyLoad()">
+<div class="app-bar fixed-top" >
+		<a href="home.html" class="app-bar-element">Home</a>
+		<div class="app-bar-element place-right" ><a class="dropdown-toggle fg-white"><span class="icon mif-menu mif-2x"></span>&nbsp;</a>
+			<div class="app-bar-drop-container place-right" data-role="dropdown" data-no-close="true">
+				<ul class="v-menu">
+					<li><a href="#"><span class="icon mif-user"></span>Register</a></li>
+					<li><a href="#"><span class="icon mif-lock"></span> Login</a></li>
+					<li class="divider"></li>
+					<li><a href="#"><span class="icon mif-list"></span> List</a></li>
+					<li><a href="#"><span class="icon mif-plus"></span> Add</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+<div class=" padding10" style="margin-top:4em;">
+	<div class="align-center">
+		<div class="sub-header">Welcome to</div>
+		<div class="sub-leader">Remember Me</div>
+		<hr>
+		<p class="text-accent">Login with your credentials to continue</p>
+	</div>
 
+	<div class="input-control text full-size"><input type="text" placeholder="Name"></div>
+	<div class="input-control text full-size"><input type="email" placeholder="Email"></div>
+	<div class="input-control password full-size"><input type="password" placeholder="Password"></div>
+	<div class="input-control full-size">
+		<input type="submit" class="button primary" value="Login">
+	</div>
+	<hr style="margin:4em 0;">
+	<div class="align-center" >
+		<div class="sub-header">Or</div>
+		
+		<p class="text-accent">Register with us to get started.</p>
+	</div>
+	
+	<div class="input-control full-size">
+		<a href="register.html" class="button success full-size">Register</a>
+	</div>
+	
+</div>
+<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="js/metro.min.js"></script>
+<script type="text/javascript" src="app.js"></script>
 </body>
 </html>
