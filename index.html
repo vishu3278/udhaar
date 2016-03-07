@@ -7,7 +7,7 @@
 <link href="css/metro.min.css" rel="stylesheet" type="text/css">
 <link href="css/metro-responsive.min.css" rel="stylesheet" type="text/css">
 <link href="css/metro-icons.min.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="cordova.js"></script> 
+<!--<script type="text/javascript" src="cordova.js"></script> -->
 </head>
 
 <body onload="bodyLoad()">
@@ -32,14 +32,16 @@
 		<p class="text-accent">Login with your credentials to continue</p>
 	</div>
     <div class="panel">
-        <div class="heading"><div class="title">Login with your credentials to continue</div></div>
+        <div class="heading"><span class="title">Login with your credentials to continue</span></div>
         <div class="content">
-            <div class="input-control text full-size"><input type="text" placeholder="Name" data-role="popover" data-popover-text="Enter Name" data-popover-mode="focus"></div>
-            <div class="input-control text full-size"><input type="email" placeholder="Email"></div>
-            <div class="input-control password full-size"><input type="password" placeholder="Password"></div>
-            <div class="input-control full-size">
-                <input type="submit" class="button primary" value="Login">
-            </div>
+           <form action="" id="loginForm" class="padding10">
+                <div class="input-control text full-size"><input type="text" name="name" required placeholder="Name" data-role="popover" data-popover-text="Enter Name" data-popover-mode="focus"></div>
+                <div class="input-control text full-size"><input type="email" name="email" required placeholder="Email"></div>
+                <div class="input-control password full-size"><input type="password" name="pass" required placeholder="Password"></div>
+                <div class="input-control full-size">
+                    <input type="submit" class="button primary" value="Login">
+                </div>
+            </form>
         </div>
     </div>
 	<hr style="margin:4em 0;">
