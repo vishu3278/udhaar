@@ -8,9 +8,10 @@
     };*/
 
     function bodyLoad() {
-    	document.addEventListener("deviceready",onDeviceReady,false);
+//    	document.addEventListener("deviceready",onDeviceReady,false);
+        document.addEventListener("deviceready", onDeviceReady, false);
     }
 
-    function deviceReady () {
+    function onDeviceReady () {
     	alert("Device is ready");
     }
