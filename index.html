@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
 <title>Remember Me</title>
 <link href="css/metro.min.css" rel="stylesheet" type="text/css">
 <link href="css/metro-responsive.min.css" rel="stylesheet" type="text/css">
@@ -28,20 +29,22 @@
 	<div class="align-center">
 		<div class="sub-header">Welcome to</div>
 		<div class="sub-leader">Remember Me</div>
-		<hr>
 		<p class="text-accent">Login with your credentials to continue</p>
 	</div>
-
-	<div class="input-control text full-size"><input type="text" placeholder="Name"></div>
-	<div class="input-control text full-size"><input type="email" placeholder="Email"></div>
-	<div class="input-control password full-size"><input type="password" placeholder="Password"></div>
-	<div class="input-control full-size">
-		<input type="submit" class="button primary" value="Login">
-	</div>
+    <div class="panel">
+        <div class="heading"><div class="title">Login with your credentials to continue</div></div>
+        <div class="content">
+            <div class="input-control text full-size"><input type="text" placeholder="Name" data-role="popover" data-popover-text="Enter Name" data-popover-mode="focus"></div>
+            <div class="input-control text full-size"><input type="email" placeholder="Email"></div>
+            <div class="input-control password full-size"><input type="password" placeholder="Password"></div>
+            <div class="input-control full-size">
+                <input type="submit" class="button primary" value="Login">
+            </div>
+        </div>
+    </div>
 	<hr style="margin:4em 0;">
 	<div class="align-center" >
 		<div class="sub-header">Or</div>
-		
 		<p class="text-accent">Register with us to get started.</p>
 	</div>
 	
