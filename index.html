@@ -13,14 +13,14 @@
 
 <body onload="bodyLoad()">
     <div class="app-bar fixed-top">
-        <a href="home.html" class="app-bar-element">Home</a>
+        <a href="index.html" class="app-bar-element">Remember App</a>
         <div class="app-bar-element place-right"><a class="dropdown-toggle fg-white"><span class="icon mif-menu mif-2x"></span>&nbsp;</a>
             <div class="app-bar-drop-container place-right" data-role="dropdown" data-no-close="true">
                 <ul class="v-menu">
                     <li><a href="#"><span class="icon mif-user"></span>Register</a></li>
                     <li><a href="#"><span class="icon mif-lock"></span> Login</a></li>
                     <li class="divider"></li>
-                    <li><a href="#"><span class="icon mif-list"></span> List</a></li>
+                    <li><a href="list.html"><span class="icon mif-list"></span> List</a></li>
                     <li><a href="#"><span class="icon mif-plus"></span> Add</a></li>
                 </ul>
             </div>
@@ -35,13 +35,13 @@
         
         <hr style="margin:2em 0;">
         <div class="accordion large-heading" id="accordion" data-role="accordion" data-close-any="true">
-            <div class="frame">
-                <div class="heading">Login with your credentials</div>
+            <div class="frame active">
+                <div class="heading">Login </div>
                 <div class="content">
                     <form action="" id="loginForm" class="padding10">
-                        <div class="input-control text full-size">
+                        <!--<div class="input-control text full-size">
                             <input type="text" name="name" placeholder="Name">
-                        </div>
+                        </div>-->
                         <div class="input-control text full-size">
                             <input type="email" name="email" placeholder="Email">
                         </div>
@@ -49,7 +49,7 @@
                             <input type="password" name="pass" placeholder="Password">
                         </div>
                         <div class="input-control ">
-                            <input type="submit" class="button primary" value="Save to LocalStorage">
+                            <input type="button" id="loginButton" class="button primary" value="Login">
                         </div>
                         <div class="input-control">
                             <input type="button" class="button" onclick="clearLocal()" value="Clear LocalStorage">
@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div class="frame">
-                <div class="heading">Register with us to get started.</div>
+                <div class="heading">Register with us </div>
                 <div class="content">
                   <form action="" id="registerForm">
                        <div class="input-control full-size"><input type="text" name="name1" placeholder="Name"></div>
@@ -67,7 +67,7 @@
                        <div class="input-control full-size"><input type="password" name="pass1" placeholder="Password"></div>
                        <div class="input-control full-size"><input type="password" name="pass2" placeholder="Confirm Password"></div>
                         <div class="input-control full-size">
-                            <input type="submit" class="button primary " value="Register">
+                            <input type="button" id="regButton" class="button primary " value="Register">
                         </div>
                     </form>
                 </div>
@@ -82,7 +82,7 @@
 
     </div>
     
-    <div data-role="dialog" id="data1" data-close-button="true" data-type="success" data-overlay="true" data-overlay-color="bg-darkEmerald" data-windows-style="true" data-hide="8000">
+    <div data-role="dialog" id="data1" data-close-button="true" data-background="bg-lightOlive" data-overlay="true" data-overlay-color="bg-olive" data-windows-style="true" data-hide="6000">
        <div class="padding20">
             <dl class="horizontal">
 
