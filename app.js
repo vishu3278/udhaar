@@ -19,6 +19,7 @@
             
         }
 //        document.addEventListener("deviceready", onDeviceReady, false);
+//        $("#accordion").accordion();
     }
 
     function onDeviceReady () {

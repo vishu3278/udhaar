@@ -32,40 +32,56 @@
             <div class="sub-leader">Remember Me</div>
             <p class="text-accent">Login with your credentials to continue</p>
         </div>
-        <div class="panel">
-            <div class="heading"><span class="title">Login with your credentials to continue</span></div>
-            <div class="content">
-                <form action="" id="loginForm" class="padding10">
-                    <div class="input-control text full-size">
-                        <input type="text" name="name" placeholder="Name">
-                    </div>
-                    <div class="input-control text full-size">
-                        <input type="email" name="email" placeholder="Email">
-                    </div>
-                    <div class="input-control password full-size">
-                        <input type="password" name="pass" placeholder="Password">
-                    </div>
-                    <div class="input-control ">
-                        <input type="submit" class="button primary" value="Save to LocalStorage">
-                    </div>
-                    <div class="input-control">
-                        <input type="button" class="button" onclick="clearLocal()" value="Clear LocalStorage">
-                    </div>
-                    <div class="input-control"><button type="button" onclick="showData()" class="button bg-green fg-white">Show Data</button></div>
-                </form>
+        
+        <hr style="margin:2em 0;">
+        <div class="accordion large-heading" id="accordion" data-role="accordion" data-close-any="true">
+            <div class="frame">
+                <div class="heading">Login with your credentials</div>
+                <div class="content">
+                    <form action="" id="loginForm" class="padding10">
+                        <div class="input-control text full-size">
+                            <input type="text" name="name" placeholder="Name">
+                        </div>
+                        <div class="input-control text full-size">
+                            <input type="email" name="email" placeholder="Email">
+                        </div>
+                        <div class="input-control password full-size">
+                            <input type="password" name="pass" placeholder="Password">
+                        </div>
+                        <div class="input-control ">
+                            <input type="submit" class="button primary" value="Save to LocalStorage">
+                        </div>
+                        <div class="input-control">
+                            <input type="button" class="button" onclick="clearLocal()" value="Clear LocalStorage">
+                        </div>
+                        <div class="input-control"><button type="button" onclick="showData()" class="button bg-green fg-white">Show Data</button></div>
+                    </form>
+                </div>
+            </div>
+            <div class="frame">
+                <div class="heading">Register with us to get started.</div>
+                <div class="content">
+                  <form action="" id="registerForm">
+                       <div class="input-control full-size"><input type="text" name="name1" placeholder="Name"></div>
+                       <div class="input-control full-size"><input type="email" name="email1" placeholder="Email"></div>
+                       <div class="input-control full-size"><input type="password" name="pass1" placeholder="Password"></div>
+                       <div class="input-control full-size"><input type="password" name="pass2" placeholder="Confirm Password"></div>
+                        <div class="input-control full-size">
+                            <input type="submit" class="button primary " value="Register">
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-        <hr style="margin:4em 0;">
-        <div class="align-center">
+        <!--<div class="align-center">
             <div class="sub-header">Or</div>
             <p class="text-accent">Register with us to get started.</p>
-        </div>
+        </div>-->
 
-        <div class="input-control full-size">
-            <a href="register.html" class="button success full-size">Register</a>
-        </div>
+        
 
     </div>
+    
     <div data-role="dialog" id="data1" data-close-button="true" data-type="success" data-overlay="true" data-overlay-color="bg-darkEmerald" data-windows-style="true" data-hide="8000">
        <div class="padding20">
             <dl class="horizontal">
