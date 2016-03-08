@@ -49,7 +49,7 @@ function showData(){
         email = "<dt>Email:</dt><dd>"+localStorage.email+"</dd>",
         pass = "<dt>Password:</dt><dd>"+localStorage.pass+"</dd>";
     $("#data1 dl").html(name+email+pass);
-    showMetroDialog('#data1','top-center');
+    showMetroDialog('#data1');
 }
 function clearLocal(){
     localStorage.clear();
