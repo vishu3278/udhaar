@@ -8,39 +8,50 @@
     };*/
 
     function bodyLoad() {
-//    	document.addEventListener("deviceready",onDeviceReady,false);
-        document.addEventListener("deviceready", onDeviceReady, false);
+        if(typeof(Storage) !== "undefined") {
+//            alert("Supported");
+            $.Notify({
+                caption: 'Local Storage',
+                content: 'Local storage is supported in your browser. You can perform localStorage actions.',
+                type: 'success',
+                icon:'<img src="icon2.png">'
+            });
+            
+        }
+//        document.addEventListener("deviceready", onDeviceReady, false);
     }
 
     function onDeviceReady () {
-//    	alert("Device is ready");
+    	alert("Device is ready");
         
-        $.Notify({
-            caption: 'Device State',
-            content: 'Device is ready',
-            type:'success'
-        });
         
         if(typeof(Storage) !== "undefined") {
-            // Code for localStorage/sessionStorage.
-            $.Notify({
-                caption: 'Localstorage',
-                content: 'Localstorage supported.',
-                type:'success'
-            });
-            $("#loginForm").on('submit',function(){
-                localStorage.name = $("input[name=name]").val();
-                localStorage.email = $("input[name=email]").val();
-                localStorage.pass = $("input[name=pass]").val();
-                
-                alert("success");
-            })
-        } else {
-            // Sorry! No Web Storage support..
-            $.Notify({
-                caption: 'LocalStorage',
-                content: 'LocalStorage is not available',
-                type:'error'
-            });
+            alert("Supported");
         }
-    }
+            
+    };
+
+var store = {};
+$("#loginForm").on('submit',function(){
+    localStorage.name = $("input[name=name]").val();
+    localStorage.email = $("input[name=email]").val();
+    localStorage.pass = $("input[name=pass]").val();
+//    alert("success");
+    $.Notify({
+        caption: 'Local Storage',
+        content: 'Name: '+localStorage.name + ' Email: '+localStorage.email,
+        type: 'success',
+        icon:'<img src="icon2.png">'
+    });
+});
+function showData(){
+    var name = "<dt>Name:</dt><dd>"+localStorage.name+"</dd>",
+        email = "<dt>Email:</dt><dd>"+localStorage.email+"</dd>",
+        pass = "<dt>Password:</dt><dd>"+localStorage.pass+"</dd>";
+    $("#data1 dl").html(name+email+pass);
+    showMetroDialog('#data1','top-center');
+}
+function clearLocal(){
+    localStorage.clear();
+//    alert(localStorage.name + localStorage.email + localStorage.pass);
+}
