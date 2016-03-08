@@ -54,4 +54,10 @@ function showData(){
 function clearLocal(){
     localStorage.clear();
 //    alert(localStorage.name + localStorage.email + localStorage.pass);
+    $.Notify({
+        caption: 'Local Storage',
+        content: 'Local Storage data cleared',
+        type: 'success',
+        icon:'<img src="icon2.png">'
+    });
 }
