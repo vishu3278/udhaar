@@ -1,97 +1,13 @@
-<!doctype html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-    <title>Remember Me</title>
-    <link href="css/metro.min.css" rel="stylesheet" type="text/css">
-    <link href="css/metro-responsive.min.css" rel="stylesheet" type="text/css">
-    <link href="css/metro-icons.min.css" rel="stylesheet" type="text/css">
-    <!--<script type="text/javascript" src="cordova.js"></script> -->
-</head>
-
-<body onload="bodyLoad()">
-    <div class="app-bar fixed-top">
-        <a href="index.html" class="app-bar-element">Remember App</a>
-        <div class="app-bar-element place-right"><a class="dropdown-toggle fg-white"><span class="icon mif-menu mif-2x"></span>&nbsp;</a>
-            <div class="app-bar-drop-container place-right" data-role="dropdown" data-no-close="true">
-                <ul class="v-menu">
-                    <li><a href="#"><span class="icon mif-user"></span>Register</a></li>
-                    <li><a href="#"><span class="icon mif-lock"></span> Login</a></li>
-                    <li class="divider"></li>
-                    <li><a href="list.html"><span class="icon mif-list"></span> List</a></li>
-                    <li><a href="#"><span class="icon mif-plus"></span> Add</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class=" padding10" style="margin-top:4em;">
-        <div class="align-center">
-            <div class="sub-header">Welcome to</div>
-            <div class="sub-leader">Remember Me</div>
-            <p class="text-accent">Login with your credentials to continue</p>
-        </div>
-        
-        <hr style="margin:2em 0;">
-        <div class="accordion large-heading" id="accordion" data-role="accordion" data-close-any="true">
-            <div class="frame active">
-                <div class="heading">Login </div>
-                <div class="content">
-                    <form action="" id="loginForm" class="padding10">
-                        <!--<div class="input-control text full-size">
-                            <input type="text" name="name" placeholder="Name">
-                        </div>-->
-                        <div class="input-control text full-size">
-                            <input type="email" name="email" placeholder="Email">
-                        </div>
-                        <div class="input-control password full-size">
-                            <input type="password" name="pass" placeholder="Password">
-                        </div>
-                        <div class="input-control ">
-                            <input type="button" id="loginButton" class="button primary" value="Login">
-                        </div>
-                        <div class="input-control">
-                            <input type="button" class="button" onclick="clearLocal()" value="Clear LocalStorage">
-                        </div>
-                        <div class="input-control"><button type="button" onclick="showData()" class="button bg-green fg-white">Show Data</button></div>
-                    </form>
-                </div>
-            </div>
-            <div class="frame">
-                <div class="heading">Register with us </div>
-                <div class="content">
-                  <form action="" id="registerForm">
-                       <div class="input-control full-size"><input type="text" name="name1" placeholder="Name"></div>
-                       <div class="input-control full-size"><input type="email" name="email1" placeholder="Email"></div>
-                       <div class="input-control full-size"><input type="password" name="pass1" placeholder="Password"></div>
-                       <div class="input-control full-size"><input type="password" name="pass2" placeholder="Confirm Password"></div>
-                        <div class="input-control full-size">
-                            <input type="button" id="regButton" class="button primary " value="Register">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!--<div class="align-center">
-            <div class="sub-header">Or</div>
-            <p class="text-accent">Register with us to get started.</p>
-        </div>-->
-
-        
-
-    </div>
-    
-    <div data-role="dialog" id="data1" data-close-button="true" data-background="bg-brown" data-overlay="true" data-overlay-color="bg-lightOrange" data-windows-style="true" data-hide="6000">
-       <div class="padding20">
-            <dl class="horizontal fg-white">
-
-            </dl>
-       </div>
-    </div>
-    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="js/metro.min.js"></script>
-    <script type="text/javascript" src="app.js"></script>
-</body>
-
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
 </html>
