@@ -1,9 +1,9 @@
 @import "./base.css";
 
 #app {
-  max-width: 1280px;
+  /*max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2rem;*/
 
   font-weight: normal;
 }
@@ -13,23 +13,31 @@ a,
   text-decoration: none;
   color: hsla(160, 100%, 37%, 1);
   transition: 0.4s;
+  text-decoration: none;
 }
+a:hover {
+  text-decoration: none;
+}
+header { background: white; box-shadow: 0 2px 8px rgba(100, 100, 90, 0.25); }
+.greetings { padding: 0.25rem; }
+.greetings h1 { margin: 0; font-weight: bold; }
+.greetings h4 { margin: 0; }
 
 @media (hover: hover) {
   a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
+    background-color: hsla(160, 100%, 37%, 0.2); text-decoration: none;
   }
 }
 
 @media (min-width: 1024px) {
   body {
-    display: flex;
-    place-items: center;
+    /*display: flex;
+    place-items: center;*/
   }
 
   #app {
-    display: grid;
+    /*display: grid;
     grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
+    padding: 0 2rem;*/
   }
 }
