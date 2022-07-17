@@ -29,8 +29,11 @@
             </div>
         </div>
         <div v-if="error" class="column col-12">
-            <div class="toast toast-error mt-2">
+            <div class="toast mt-2">
                 {{error}}
+            </div>
+            <div class="bar bar-sm mb-2">
+                <div class="bar-item" role="progressbar" :style="{'width':timeout+'%'}" :aria-valuenow="timeout" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
         </div>
         <div class="column col-12 text-center mt-3">
@@ -77,7 +80,8 @@ export default {
                 remarks: null,
             },
             loading: false,
-            error: false
+            error: false,
+            timeout: 0,
         }
     },
     watch: {
@@ -121,7 +125,22 @@ export default {
         },
         editPayee() {
             if (this.form.name && this.form.amount && this.form.mobile && this.form.duedate) {
-                updatePayee(this.$route.params.id).then(u => console.log(u)).catch(e => console.log(e))
+                console.log(this.form)
+                updatePayee(this.$route.params.id, this.form)
+                    .then(() => {
+                        this.error = "Success"
+                        let interval = setInterval(() => {
+                            this.timeout += 100 / 7
+                        }, 500)
+                        setTimeout(() => {
+                            clearInterval(interval)
+                            this.error = false
+                        }, 3500)
+                    })
+                    .catch(e => {
+                        console.log(e)
+                        this.error = e
+                    })
             } else {
                 this.error = "fields required"
             }

@@ -45,7 +45,7 @@ const addPayee = async (content) => {
 }
 
 const updatePayee = async (id, content) => {
-    const upd = await updateDoc(collection(db, 'payees'), content)
+    const upd = await updateDoc(doc(db, 'payees', id), content)
     return upd
 }
 
