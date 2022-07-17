@@ -23,6 +23,36 @@ header { background: white; box-shadow: 0 2px 8px rgba(100, 100, 90, 0.25); }
 .greetings h1 { margin: 0; font-weight: bold; }
 .greetings h4 { margin: 0; }
 
+.btn { padding-left: var(--space-3); padding-right: var(--space-3); }
+
+.m-3 { margin: var(--space-3); }
+.m-4 { margin: var(--space-4); }
+.m-5 { margin: var(--space-5);}
+.mt-3 { margin-top: var(--space-3); }
+.mt-4 { margin-top: var(--space-4); }
+.mt-5 { margin-top: var(--space-5);}
+.mr-3 { margin-right: var(--space-3); }
+.mr-4 { margin-right: var(--space-4); }
+.mr-5 { margin-right: var(--space-5);}
+.mb-3 { margin-bottom: var(--space-3); }
+.mb-4 { margin-bottom: var(--space-4); }
+.mb-5 { margin-bottom: var(--space-5);}
+.ml-3 { margin-left: var(--space-3); }
+.ml-4 { margin-left: var(--space-4); }
+.ml-5 { margin-left: var(--space-5);}
+.mx-3 { margin-left: var(--space-3);  margin-right: var(--space-3);}
+.mx-4 { margin-left: var(--space-4);  margin-right: var(--space-4);}
+.mx-5 { margin-left: var(--space-5); margin-right: var(--space-5);}
+.my-3 { margin-top: var(--space-3);  margin-bottom: var(--space-3);}
+.my-4 { margin-top: var(--space-4);  margin-bottom: var(--space-4);}
+.my-5 { margin-top: var(--space-5); margin-bottom: var(--space-5);}
+
+.p-3 { padding: var(--space-3); }
+.p-4 { padding: var(--space-4); }
+.p-5 { padding: 2.5rem;}
+
+.loading-wrapper { position: absolute; background-color: rgba(255,255,255,0.85); left:0; top: 0; right: 0; bottom: 0; z-index: 99; display: flex; align-items:center; justify-content: center; }
+
 @media (hover: hover) {
   a:hover {
     background-color: hsla(160, 100%, 37%, 0.2); text-decoration: none;
