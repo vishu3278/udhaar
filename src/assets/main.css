@@ -51,6 +51,8 @@ header { background: white; box-shadow: 0 2px 8px rgba(100, 100, 90, 0.25); }
 .p-4 { padding: var(--space-4); }
 .p-5 { padding: 2.5rem;}
 
+.bar .bar-item { transition: width 200ms linear; }
+
 .loading-wrapper { position: absolute; background-color: rgba(255,255,255,0.85); left:0; top: 0; right: 0; bottom: 0; z-index: 99; display: flex; align-items:center; justify-content: center; }
 
 @media (hover: hover) {

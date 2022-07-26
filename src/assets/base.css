@@ -79,3 +79,10 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
+table th { font-weight: bold; color: var(--vt-c-indigo); }
+table.compact th,
+table.compact td { padding: 0.25rem; }
+
+table .bg-error td { background-color: rgba(250, 225, 220, 0.9); color: darkred; }
+table .bg-success td { background-color: rgba(240, 250, 220, 0.9); color: darkgreen; }

@@ -30,7 +30,7 @@ const getPayees = async () => {
     payeesSnapshot.docs.map(doc => {
         payees.push({ id: doc.id, ...doc.data() })
     });
-    console.log(payees)
+    // console.log(payees)
     return payees;
 }
 

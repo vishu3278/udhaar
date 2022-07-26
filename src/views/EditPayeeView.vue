@@ -34,7 +34,7 @@ export default {
         }
     },
     mounted() {
-        console.log(this.$route.params.id)
+        // console.log(this.$route.params.id)
         getPayeeById(this.$route.params.id).then(d => this.form = d).catch(e => console.log(e))
     },
     /*methods: {

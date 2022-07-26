@@ -105,7 +105,7 @@ export default {
             if (this.form.name && this.form.amount && this.form.mobile && this.form.duedate) {
                 addPayee(this.form)
                     .then(res => {
-                        console.log(res)
+                        // console.log(res)
                         this.form = {
                             name: null,
                             amount: null,
@@ -114,6 +114,8 @@ export default {
                             duedate: null,
                             remarks: null,
                         }
+                        this.error = "Success"
+                        this.$router.push('/udhaar')
                     })
                     .catch(e => {
                         console.log(e)
@@ -135,6 +137,7 @@ export default {
                         setTimeout(() => {
                             clearInterval(interval)
                             this.error = false
+                            this.$router.push('/udhaar')
                         }, 3500)
                     })
                     .catch(e => {
