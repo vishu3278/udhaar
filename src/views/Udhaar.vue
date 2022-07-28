@@ -36,18 +36,8 @@
                     </div>
                 </div>
             </div>
-            <div class="divider-vert"></div>
-            <div class="column">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-title h5">Total</div>
-                        <div class="card-subtitle text-gray">lorem</div>
-                    </div>
-                    <div class="card-body">
-                        32564
-                    </div>
-                </div>
-            </div>
+            <!-- <div class="divider-vert"></div> -->
+            
         </div>
     </section>
     <div class="container">
@@ -126,10 +116,11 @@
 // import { getPayees } from '../firebase.js'
 import { collection, getDocs } from "firebase/firestore";
 import { db, getPayees, updatePayee } from "@/firebase.js"
+// import * as echarts from 'echarts';
 
 export default {
 
-    name: 'Dashboard',
+    name: 'Udhaar',
 
     data() {
         return {
@@ -163,7 +154,7 @@ export default {
                 .then((res) => {
                     console.log(res)
                     this.msg = "Success"
-                    this.autoclose()
+                    this.autocloseModal()
                 })
                 .catch(e => {
                     console.log(e)
@@ -175,7 +166,7 @@ export default {
                 .then(() => {
                     // console.log(res)
                     this.msg = "Success"
-                    this.autoclose()
+                    this.autocloseModal()
                 })
                 .catch(e => {
                     console.log(e)

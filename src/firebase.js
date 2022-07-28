@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDoc, getDocs, doc, addDoc, setDoc, updateDoc } from "firebase/firestore";
+import { getFirestore, collection, getDoc, getDocs, doc, addDoc, setDoc, updateDoc, query, orderBy, where, onSnapshot } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -23,9 +23,10 @@ const db = getFirestore(app);
 
 }*/
 const getPayees = async () => {
-    // const payees = collection(db, 'payees');
+    const payeesRef = collection(db, 'payees');
     let payees = []
-    const payeesSnapshot = await getDocs(collection(db, 'payees'));
+
+    const payeesSnapshot = await getDocs(payeesRef);
 
     payeesSnapshot.docs.map(doc => {
         payees.push({ id: doc.id, ...doc.data() })
@@ -33,6 +34,23 @@ const getPayees = async () => {
     // console.log(payees)
     return payees;
 }
+
+/*const getPayeesRealtime = async () => {
+    const q = query(collection(db, "payees"), orderBy("name"));
+    let payees = []
+    const unsubscribe = await onSnapshot(q, (querySnapshot) => {
+        const cities = [];
+        querySnapshot.docs.map(doc => {
+            cities.push(doc.data());
+            // console.log('loop->',doc.data());
+        });
+        console.log("Current payees ", cities);
+        payees = cities
+        return cities
+    })
+    console.log(unsubscribe, payees)
+    return payees
+}*/
 
 const getPayeeById = async (id) => {
     const docSnap = await getDoc(doc(db, "payees", id));
