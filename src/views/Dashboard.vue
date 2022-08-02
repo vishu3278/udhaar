@@ -1,5 +1,5 @@
 <template>
-    <section class="bg-secondary p-2 mb-3">
+    <section class="bg-secondary p-2 ">
         <div class="columns m-2">
             <div class="column col-7">
                 <div class="columns">

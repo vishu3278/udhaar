@@ -20,8 +20,8 @@ a:hover {
 }
 header { background: white; box-shadow: 0 2px 8px rgba(100, 100, 90, 0.25); }
 .greetings { padding: 0.25rem; }
-.greetings h1 { margin: 0; font-weight: bold; }
-.greetings h4 { margin: 0; }
+.greetings h1 { margin: 0; font-weight: bold; line-height: 1; }
+.greetings h4 { margin: 0; line-height: 1; }
 
 .btn { padding-left: var(--space-3); padding-right: var(--space-3); }
 
