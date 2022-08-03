@@ -17,13 +17,12 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const payeesRef = collection(db, 'payees');
+const expenseRef = collection(db, 'expense');
 
 // Get a list of payees from your database
-/*async function updatePayee(id) {
 
-}*/
 const getPayees = async () => {
-    const payeesRef = collection(db, 'payees');
     let payees = []
 
     const payeesSnapshot = await getDocs(payeesRef);
@@ -58,7 +57,7 @@ const getPayeeById = async (id) => {
 }
 
 const addPayee = async (content) => {
-    const docRef = await addDoc(collection(db, 'payees'), content);
+    const docRef = await addDoc(payeesRef, content);
     return docRef
 }
 
@@ -67,4 +66,21 @@ const updatePayee = async (id, content) => {
     return upd
 }
 
-export { db, addPayee, getPayees, getPayeeById, updatePayee }
+const getExpense = async () => {
+    let exp = []
+
+    const expSnapshot = await getDocs(expenseRef);
+
+    expSnapshot.docs.map(doc => {
+        exp.push({ id: doc.id, ...doc.data() })
+    });
+    // console.log(exp)
+    return exp;
+}
+
+const addExpense = async (content) => {
+    const docRef = await addDoc(expenseRef, content);
+    return docRef
+}
+
+export { db, addPayee, getPayees, getPayeeById, updatePayee, getExpense, addExpense }

@@ -20,6 +20,7 @@
                 <RouterLink to="/">Home</RouterLink>
                 <RouterLink to="/udhaar">Udhaar</RouterLink>
                 <RouterLink to="/addpayee">New Payee</RouterLink>
+                <RouterLink to="/expense">Expense</RouterLink>
                 <RouterLink to="/about">About</RouterLink>
             </nav>
         </div>

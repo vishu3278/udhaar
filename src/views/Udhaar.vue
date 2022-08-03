@@ -49,30 +49,6 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- <tr>
-                    <td>1</td>
-                    <td>Naveen</td>
-                    <td>15000</td>
-                    <td>15000</td>
-                    <td>2 July 2022</td>
-                    <td><button class="btn btn-primary btn-sm">Done</button> <button class="btn btn-warning btn-sm">Extend</button> <button class="btn btn-error btn-sm">Bad</button></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Tarun</td>
-                    <td>9000</td>
-                    <td>5000</td>
-                    <td>2 July 2021</td>
-                    <td><button class="btn btn-primary btn-sm">Done</button> <button class="btn btn-warning btn-sm">Extend</button> <button class="btn btn-error btn-sm">Bad</button></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Suresh</td>
-                    <td>3000</td>
-                    <td>1000</td>
-                    <td>2 Sept 2022</td>
-                    <td><button class="btn btn-primary btn-sm">Done</button> <button class="btn btn-warning btn-sm">Extend</button> <button class="btn btn-error btn-sm">Bad</button></td>
-                </tr> -->
                 <tr v-for="(p, index) in payees" :key="index" :class="{'bg-error': p.bad, 'bg-success': p.pending == 0}">
                     <td>{{index+1}}</td>
                     <td>{{p.name}}</td>
