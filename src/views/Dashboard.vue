@@ -151,20 +151,33 @@ export default {
                 tooltip: {
                     trigger: 'item'
                 },
+                title: {
+                    show: true,
+                    text: "Udhaar Chart",
+                    left: 'center',
+                    // right: 'center',
+                    // textAlign: 'center',
+                },
                 legend: {
-                    top: '2%',
-                    left: 'center'
+                    // show: false,
+                    bottom: 0,
+                    left: 'center',
+                    // icon: "pin",
+                    itemGap: 20,
+                    textStyle: {
+                        fontSize: 14,
+                    }
                 },
                 series: [{
                     name: 'Udhaar',
                     type: 'pie',
-                    radius: ['35%', '70%'],
+                    radius: ['15%', '40%'],
                     avoidLabelOverlap: true,
-                    itemStyle: {
-                        borderRadius: 10,
+                    /*itemStyle: {
+                        borderRadius: 3,
                         borderColor: '#fff',
-                        borderWidth: 2
-                    },
+                        borderWidth: 1
+                    },*/
                     label: {
                         show: false,
                         position: 'center'
@@ -172,12 +185,44 @@ export default {
                     emphasis: {
                         /*label: {
                             show: true,
-                            fontSize: '40',
+                            fontSize: '32',
                             fontWeight: 'bold'
                         }*/
                     },
                     labelLine: {
-                        show: false
+                        length: 20,
+                        showAbove: true,
+                        smooth: 0.25,
+                    },
+                    label: {
+                        formatter: ' {b|{b}}\n{c|{c}}\n{d|{d}%} ',
+                        position: 'outside',
+                        fontWeight: 'bold',
+                        // backgroundColor: '#F6F8FC',
+                        // padding: 4,
+                        // borderColor: '#8C8D8E',
+                        // borderWidth: 1,
+                        // borderRadius: 4,
+                        alignTo: 'labelLine',
+                        rich: {
+                            
+                            b: {
+                                color: '#4C5058',
+                                fontSize: 14,
+                                lineHeight: 18
+                            },
+                            c: {
+                                color: '#6E7079',
+                                fontSize: 16,
+                                fontWeight: 'bold',
+                                lineHeight: 20,
+                            },
+                            d:{
+                                color: "#657892",
+                                fontWeight: 'light',
+                                lineHeight: 16
+                            }
+                        }
                     },
                     data: [
                         { value: this.pending, name: 'Pending' },
