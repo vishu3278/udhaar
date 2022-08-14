@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import Login from '../views/Login.vue'
+import Logout from '../views/Logout.vue'
 import Dashboard from '../views/Dashboard.vue'
 import Udhaar from '../views/Udhaar.vue'
 import AddPayeeView from '../views/AddPayeeView.vue'
@@ -13,8 +15,10 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: Dashboard
+      component: Dashboard,
     },
+    { path: '/login', name: 'login', component: Login },
+    { path: '/logout', name: 'logout', component: Logout },
     { path: '/udhaar', name: 'udhaar', component: Udhaar },
     { path: '/addpayee', name: 'addpayee', component: AddPayeeView },
     { path: '/editpayee/:id', name: 'editpayee', component: EditPayeeView },
@@ -30,5 +34,9 @@ const router = createRouter({
     }
   ]
 })
+
+/*router.beforeEach((to, from, next) => {
+  if (to.path == 'login') {}
+})*/
 
 export default router

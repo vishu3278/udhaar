@@ -22,6 +22,8 @@
                 <RouterLink to="/addpayee">New Payee</RouterLink>
                 <RouterLink to="/expense">Expense</RouterLink>
                 <RouterLink to="/about">About</RouterLink>
+                <RouterLink to="/login">Login</RouterLink>
+                <RouterLink to="/logout">Logout</RouterLink>
             </nav>
         </div>
     </header>

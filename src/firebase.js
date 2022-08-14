@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDoc, getDocs, doc, addDoc, setDoc, updateDoc, query, orderBy, where, onSnapshot } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
-
+import { getAuth } from "firebase/auth";
 // Your web app's Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyBJ1jIfcGIrXaVKin6ee7pQ_KsE3r0K5DE",
@@ -83,4 +83,6 @@ const addExpense = async (content) => {
     return docRef
 }
 
-export { db, addPayee, getPayees, getPayeeById, updatePayee, getExpense, addExpense }
+
+const auth = getAuth();
+export { db, addPayee, getPayees, getPayeeById, updatePayee, getExpense, addExpense, auth }
