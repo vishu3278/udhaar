@@ -30,6 +30,10 @@
                                         <input class="form-input" type="password" v-model="password" placeholder="Password">
                                     </div>
                                 </form>
+                                <div v-show="state.loginError" class="toast toast-error">
+                                    <!-- <button class="btn btn-clear float-right"></button> -->
+                                    {{state.loginError}}
+                                </div>
                             </div>
                             <div class="card-footer">
                                 <button class="btn btn-primary" @click="login">Login</button>
@@ -49,6 +53,10 @@
                                         <input class="form-input" type="password" v-model="password" placeholder="Password">
                                     </div>
                                 </form>
+                                <div v-show="state.regError" class="toast toast-error">
+                                    <!-- <button class="btn btn-clear float-right"></button> -->
+                                    {{state.regError}}
+                                </div>
                             </div>
                             <div class="card-footer">
                                 <button class="btn btn-primary" @click="register">Register</button>
@@ -64,24 +72,31 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 // import { createUser } from '@/firebase/auth.js'
 // import TheWelcome from '@/components/TheWelcome.vue'
-import { ref } from 'vue'
+import { reactive, computed } from 'vue'
+import { ref, watch } from 'vue'
 import router from '@/router'
 import { auth } from '@/firebase.js'
 const email = ref('')
 const password = ref('')
 const tab = ref('login')
 const user = ref({})
+const state = reactive({ loginError: '', regError: '' })
+watch(tab, (newValue) => {
+    if (newValue == "login") { state.regError == '' }
+    if (newValue == "register") { state.loginError == '' }
+})
 const login = () => {
     signInWithEmailAndPassword(auth, email.value, password.value)
         .then((userCredential) => {
             // Signed in 
-            user.value = userCredential.user;
             console.info(userCredential)
+            user.value = userCredential.user;
             sessionStorage.setItem("user", JSON.stringify({ accessToken: userCredential.user.accessToken, email: userCredential.user.email, name: userCredential.user.displayName, phone: userCredential.user.phoneNumber, photo: userCredential.user.photoURL, uid: userCredential.user.uid }))
             router.push('/')
         })
         .catch((error) => {
             console.log(error.code, error.message)
+            state.loginError = error.message
             /*const errorCode = error.code;
             const errorMessage = error.message;*/
         });
@@ -100,13 +115,6 @@ const register = () => {
             const errorMessage = error.message;*/
 
         });
-}
-const logout = () => {
-    signOut(auth).then(() => {
-        // Sign-out successful.
-    }).catch((error) => {
-        // An error happened.
-    });
 }
 </script>
 <style lang="css" scoped>
@@ -132,6 +140,14 @@ main {
     padding: 2rem;
     min-height: calc(100vh - 65px);
 }
-.tab .tab-item a.active, .tab .tab-item.active a { font-weight: bold; }
-.tab .tab-item a:focus { outline: none; box-shadow: none; }
+
+.tab .tab-item a.active,
+.tab .tab-item.active a {
+    font-weight: bold;
+}
+
+.tab .tab-item a:focus {
+    outline: none;
+    box-shadow: none;
+}
 </style>
