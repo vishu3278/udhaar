@@ -21,6 +21,7 @@
                 <RouterLink to="/udhaar">Udhaar</RouterLink>
                 <RouterLink to="/addpayee">New Payee</RouterLink>
                 <RouterLink to="/expense">Expense</RouterLink>
+                <RouterLink to="/invoice">Invoice</RouterLink>
                 <RouterLink to="/about">About</RouterLink>
                 <RouterLink to="/login">Login</RouterLink>
                 <RouterLink to="/logout">Logout</RouterLink>

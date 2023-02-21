@@ -7,7 +7,9 @@ import Udhaar from '../views/Udhaar.vue'
 import AddPayeeView from '../views/AddPayeeView.vue'
 import EditPayeeView from '../views/EditPayeeView.vue'
 import Expense from '../views/Expense.vue'
+import Invoice from '../views/Invoice.vue'
 import AddExpenseView from '../views/AddExpenseView.vue'
+import AddInvoice from '../views/AddInvoice.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -23,7 +25,9 @@ const router = createRouter({
     { path: '/addpayee', name: 'addpayee', component: AddPayeeView },
     { path: '/editpayee/:id', name: 'editpayee', component: EditPayeeView },
     { path: '/expense', name: 'expense', component: Expense },
-    { path: '/addExpense', name: 'addexpense', component: AddExpenseView },
+    { path: '/addexpense', name: 'addexpense', component: AddExpenseView },
+    { path: '/invoice', name: 'invoice', component: Invoice },
+    { path: '/addinvoice', name: 'addinvoice', component: AddInvoice },
     {
       path: '/about',
       name: 'about',

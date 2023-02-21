@@ -1,14 +1,21 @@
 <template>
     <form action="" class="columns p-relative">
         <div class="column col-6">
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label class="form-label">Type</label>
                 <select class="form-select" v-model="form.type">
                     <option>Choose an option</option>
                     <option value="Debit">Debit</option>
                     <option value="Credit">Credit</option>
                 </select>
-                <!-- <input class="form-input" type="text" v-model="form.name" placeholder="Name"> -->
+            </div> -->
+            <div class="form-group">
+                <label class="form-radio form-inline">
+                    <input type="radio" name="type" value="Credit" v-model="form.type"><i class="form-icon"></i> Credit
+                </label>
+                <label class="form-radio form-inline">
+                    <input type="radio" name="type" value="Debit" v-model="form.type"><i class="form-icon"></i> Debit
+                </label>
             </div>
             <template v-if="form.type == 'Debit'">
                 <div class="form-group">
@@ -93,7 +100,7 @@ export default {
         return {
             // payee: {},
             form: {
-                type: null,
+                type: "Credit",
                 debit: 0,
                 credit: 0,
                 from: "",

@@ -31,7 +31,6 @@
                 </div>
             </div>
             <!-- <div class="divider-vert"></div> -->
-            
         </div>
     </section>
     <div class="container">
@@ -57,9 +56,12 @@
                     <td>{{humanDate(p.duedate)}}</td>
                     <td>{{p.remarks}}</td>
                     <td v-html="status(p.duedate)"></td>
-                    <td><template v-if="p.pending != 0"><button class="btn btn-primary btn-sm" @click="donePayee(p.id)">Done</button>
-                            <router-link :to="'/editpayee/'+p.id" class="btn btn-warning btn-sm">Extend</router-link> <button v-if="!p.bad" class="btn btn-error btn-sm" @click="addBadPayee(p.id)">Bad</button>
-                        </template>
+                    <td>
+                        <div v-if="p.pending != 0" class="btn-group ">
+                            <button class="btn btn-primary btn-sm" @click="donePayee(p.id)">Done</button> 
+                            <router-link :to="'/editpayee/'+p.id" class="btn btn-warning btn-sm">Extend</router-link> 
+                            <button v-if="!p.bad" class="btn btn-error btn-sm" @click="addBadPayee(p.id)">Bad</button>
+                        </div>
                     </td>
                 </tr>
             </tbody>
@@ -154,17 +156,17 @@ export default {
                 this.msg = null
             }, duration)
         },
-        humanDate(d){
+        humanDate(d) {
             return format(new Date(d), 'dd-MMM-yyyy')
         },
-        status(date){
+        status(date) {
             const d = new Date(date)
             if (compareAsc(new Date(date), new Date()) == 1) {
                 return `<span class="label label-success">Upcoming</span>`
             } else {
                 return formatDistanceToNow(d)
             }
-            
+
             /*if ((new Date(date) - new Date()) > 2 && (new Date(date) - new Date()) < 11) {
                 return `<span class="label label-primary">Upcoming</span>`
             }

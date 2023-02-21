@@ -19,6 +19,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const payeesRef = collection(db, 'payees');
 const expenseRef = collection(db, 'expense');
+const invoicesRef = collection(db, 'invoices');
 
 // Get a list of payees from your database
 
@@ -84,5 +85,20 @@ const addExpense = async (content) => {
 }
 
 
+const getInvoices = async (content) => {
+    const inv = []
+    const invSnapshot = await getDocs(invoicesRef)
+
+    invSnapshot.docs.map(doc => {
+        inv.push({id: doc.id, ...doc.data()})
+    })
+    return inv
+}
+
+const addInvoice = async (content) => {
+    const invRef = await addDoc(invoicesRef, content);
+    return invRef
+}
+
 const auth = getAuth();
-export { db, addPayee, getPayees, getPayeeById, updatePayee, getExpense, addExpense, auth }
+export { db, addPayee, getPayees, getPayeeById, updatePayee, getExpense, addExpense, getInvoices, addInvoice, auth }
