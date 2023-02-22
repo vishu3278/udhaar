@@ -6,65 +6,93 @@
         </div>
     </section>
     <div class="container">
-        <table class="table compact table-striped table-hover">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>No.</th>
-                    <th>Date</th>
-                    <th>From</th>
-                    <th>To</th>
-                    <th>Place</th>
-                    <th>Phone</th>
-                    <th>Email</th>
-                    <th>Mode</th>
-                    <th>Amount</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(p, index) in invoices" :key="index" :class="{'bg-error': p.bad, 'bg-success': p.pending == 0}">
-                    <td>{{p.id}}</td>
-                    <td>{{p.no}}</td>
-                    <td>{{p.date}}</td>
-                    <td>{{p.from}}</td>
-                    <td>{{p.to}}</td>
-                    <td>{{p.place}}</td>
-                    <td>{{p.phone}}</td>
-                    <td>{{p.email}}</td>
-                    <td>{{p.payment_mode}}</td>
-                    <td>{{p.total}}</td>
-                    <td>Preview | Print | Download</td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="4"></td>
-                    <td colspan="4"></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tfoot>
-        </table>
-        <div class="modal " :class="{'active': msg }">
-            <a href="#close" class="modal-overlay" aria-label="Close" @click="closeModal"></a>
-            <div class="modal-container">
-                <div class="modal-header">
-                    <a href="#close" class="btn btn-clear float-right" @click="closeModal" aria-label="Close"></a>
-                    <div class="modal-title h5">Modal title</div>
+        <div class="columns">
+            <div class="column col-8">
+                <table class="table compact table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>No.</th>
+                            <th>Date</th>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Place</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Mode</th>
+                            <th>Amount</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(p, index) in invoices" :key="index" :class="{'bg-error': p.bad, 'bg-success': p.pending == 0}">
+                            <td>{{p.id}}</td>
+                            <td>{{p.no}}</td>
+                            <td>{{p.date}}</td>
+                            <td>{{p.from}}</td>
+                            <td>{{p.to}}</td>
+                            <td>{{p.place}}</td>
+                            <td>{{p.phone}}</td>
+                            <td>{{p.email}}</td>
+                            <td>{{p.payment_mode}}</td>
+                            <td>{{p.total}}</td>
+                            <td><button class="btn btn-sm" @click="setActiveInvoice(p.id)">Preview</button></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4"></td>
+                            <td colspan="4"></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="column" style="background-color: #D2C7BA;">
+                <div v-if="activeInvoice">
+                    <div class="d-flex justify-center my-1">
+                        <div class="btn-group ">
+                            <button class="btn btn-sm" @click="closePreview">Close</button>
+                            <button class="btn btn-sm">Download</button>
+                            <button class="btn btn-sm">Print</button>
+                        </div>
+                    </div>
+                    <invoice-template :invoice="activeInvoice" :key="activeInvoice.id"></invoice-template>
+                    <br>
                 </div>
-                <div class="modal-body">
-                    <div class="content">
-                        {{msg}}
-                        <!-- content here -->
+                <div v-else>
+                    <div class="empty">
+                        <div class="empty-icon">
+                            <i class="icon icon-stop icon-2x"></i>
+                        </div>
+                        <p class="empty-title h5">You have not selected any Invoice</p>
+                        <p class="empty-subtitle">Click the preview button to start.</p>
+                        <div class="empty-action">
+                            <button class="btn btn-primary" @click="setActiveInvoice(invoices[0].id)">Preview 1</button>
+                        </div>
                     </div>
                 </div>
-                <!-- <div class="modal-footer">
-                    ...
-                </div> -->
             </div>
         </div>
-        <invoice-template :invoice="invoices[0]"></invoice-template>
+    </div>
+    <div class="modal " :class="{'active': msg }">
+        <a href="#close" class="modal-overlay" aria-label="Close" @click="closeModal"></a>
+        <div class="modal-container">
+            <div class="modal-header">
+                <a href="#close" class="btn btn-clear float-right" @click="closeModal" aria-label="Close"></a>
+                <div class="modal-title h5">Modal title</div>
+            </div>
+            <div class="modal-body">
+                <div class="content">
+                    {{msg}}
+                    <!-- content here -->
+                </div>
+            </div>
+            <!-- <div class="modal-footer">
+                ...
+            </div> -->
+        </div>
     </div>
 </template>
 <script>
@@ -86,6 +114,7 @@ export default {
             balance: 0,
             totalDebit: 0,
             totalCredit: 0,
+            activeInvoice: null,
         }
     },
 
@@ -98,6 +127,12 @@ export default {
             .catch(e => console.log(e))
     },
     methods: {
+        setActiveInvoice(id) {
+            this.activeInvoice = this.invoices.find(inv => inv.id == id)
+        },
+        closePreview() {
+            this.activeInvoice = null
+        },
         closeModal() {
             this.msg = null
         },
