@@ -50,7 +50,7 @@
                 </table>
             </div>
             <div class="column" style="background-color: #D2C7BA;">
-                <div v-if="activeInvoice">
+                <!-- <div v-if="activeInvoice">
                     <div class="d-flex justify-center my-1">
                         <div class="btn-group ">
                             <button class="btn btn-sm" @click="closePreview">Close</button>
@@ -58,9 +58,11 @@
                             <button class="btn btn-sm">Print</button>
                         </div>
                     </div>
-                    <invoice-template :invoice="activeInvoice" :key="activeInvoice.id"></invoice-template>
                     <br>
-                </div>
+                </div> -->
+                <template v-if="activeInvoice">
+                    <invoice-template :invoice="activeInvoice" :key="activeInvoice.id" @close-preview="activeInvoice = null"></invoice-template>
+                </template>
                 <div v-else>
                     <div class="empty">
                         <div class="empty-icon">
@@ -148,4 +150,5 @@ export default {
 }
 </script>
 <style lang="css" scoped>
+
 </style>

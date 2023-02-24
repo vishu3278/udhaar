@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDoc, getDocs, doc, addDoc, setDoc, updateDoc, query, orderBy, where, onSnapshot } from "firebase/firestore";
+import { getFirestore, collection, getDoc, getDocs, doc, addDoc, setDoc, updateDoc, query, orderBy, limit, where, onSnapshot } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 import { getAuth } from "firebase/auth";
@@ -87,7 +87,12 @@ const addExpense = async (content) => {
 
 const getInvoices = async (content) => {
     const inv = []
-    const invSnapshot = await getDocs(invoicesRef)
+    const q = query(invoicesRef, orderBy("date", "desc"));
+    const invSnapshot = await getDocs(q)
+    // const invSnapshot = await getDocs(invoicesRef)
+    // console.log(q)
+
+    // var collectionRef = firebase.firestore().collection('invoices');
 
     invSnapshot.docs.map(doc => {
         inv.push({id: doc.id, ...doc.data()})
