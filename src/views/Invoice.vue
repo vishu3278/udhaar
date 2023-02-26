@@ -48,6 +48,36 @@
                         </tr>
                     </tfoot>
                 </table>
+                <br>
+                <hr>
+                <h5>Companies</h5>
+                <table class="table compact table-striped">
+                    <thead>
+                        <tr>
+                            <td>Id</td>
+                            <td>Name</td>
+                            <td>Address</td>
+                            <td>Contact</td>
+                            <td>Phone</td>
+                            <td>Email</td>
+                            <td>GST</td>
+                            <td>PAN</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="c in companies">
+                            <td>{{c.id}}</td>
+                            <td>{{c.company}}</td>
+                            <td>{{c.address}}</td>
+                            <td>{{c.name}}</td>
+                            <td>{{c.phone}}</td>
+                            <td>{{c.email}}</td>
+                            <td>{{c.gst}}</td>
+                            <td>{{c.pan}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <add-company-form></add-company-form>
             </div>
             <div class="column" style="background-color: #D2C7BA;">
                 <!-- <div v-if="activeInvoice">
@@ -98,20 +128,23 @@
     </div>
 </template>
 <script>
-import { getInvoices } from "@/firebase.js"
+import { getInvoices, getCompanies } from "@/firebase.js"
 import { format, formatDistanceToNow, compareAsc } from 'date-fns'
 import InvoiceTemplate from "@/components/InvoiceTemplate.vue"
+import AddCompanyForm from '@/components/AddCompanyForm.vue'
 // import * as echarts from 'echarts';
 
 export default {
 
     name: 'InvoiceView',
     components: {
-        InvoiceTemplate
+        InvoiceTemplate,
+        AddCompanyForm,
     },
     data() {
         return {
             invoices: [],
+            companies: [],
             msg: "",
             balance: 0,
             totalDebit: 0,
@@ -127,6 +160,9 @@ export default {
                 this.invoices = inv
             })
             .catch(e => console.log(e))
+        getCompanies().then(c => {
+            this.companies = c
+        })
     },
     methods: {
         setActiveInvoice(id) {

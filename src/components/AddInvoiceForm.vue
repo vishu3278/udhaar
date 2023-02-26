@@ -22,50 +22,78 @@
                     <div class="panel-title">Add Invoice --> {{no}}</div>
                 </div>
                 <div class="panel-body">
-                    <div class="form-group">
-                        <label class="form-label">From</label>
-                        <textarea class="form-input" v-model="form.from" cols="30" rows="3"></textarea>
-                        <!-- <input class="form-input" type="text" v-model="form.debit" placeholder="abc"> -->
+                    <div class="form-body">
+                        <label class="form-label">From </label>
+                        <select class="form-select" v-model="from">
+                            <option value="" selected>Select Name | Company</option>
+                            <option v-for="comp in companies" :value="comp.id">{{comp.name}} | {{comp.company}}</option>
+                        </select>
                     </div>
-                    <div class="form-group">
-                        <label class="form-label">To</label>
-                        <textarea class="form-input" v-model="form.to" cols="30" rows="3"></textarea>
+                    <div v-if="from" class="card mt-2">
+                        <div class="card-header">
+                            <div class="card-title h5 text-primary">{{company.name}}</div>
+                            <div class="card-subtitle text-bold">{{company.company}}</div>
+                        </div>
+                        <div class="card-body">
+                            Address: {{company.address}}<br>
+                            Phone: {{company.phone}}<br>
+                            Email: {{company.email}}<br>
+                            GST: {{company.gst}} <br>
+                            PAN: {{company.pan}}
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label class="form-label">Email</label>
-                        <input class="form-input" type="email" v-model="form.email" placeholder="Email address">
-                    </div>
-                    <div class="columns">
-                        <div class="column col-6 ">
-                            <div class="form-group">
-                                <label class="form-label">Phone</label>
-                                <input class="form-input" type="number" v-model="form.phone" placeholder="Phone">
+                    <template v-else>
+                        <div class="form-group">
+                            <label class="form-label">From</label>
+                            <textarea class="form-input" v-model="form.from" cols="30" rows="3"></textarea>
+                            <!-- <input class="form-input" type="text" v-model="form.debit" placeholder="abc"> -->
+                        </div>
+                        <div class="columns">
+                            <div class="column">
+                                <div class="form-group">
+                                    <label class="form-label">Email</label>
+                                    <input class="form-input" type="email" v-model="form.email" placeholder="Email address">
+                                </div>
+                            </div>
+                            <div class="column col-5">
+                                <div class="form-group">
+                                    <label class="form-label">Phone</label>
+                                    <input class="form-input" type="number" v-model="form.phone" placeholder="Phone">
+                                </div>
                             </div>
                         </div>
-                        <div class="column col-6 ">
+                        <div class="columns">
+                            <div class="column">
+                                <div class="form-group">
+                                    <label class="form-label">GST No.</label>
+                                    <input class="form-input" type="text" v-model="form.gst" placeholder="GST No.">
+                                </div>
+                            </div>
+                            <div class="column col-5">
+                                <div class="form-group">
+                                    <label class="form-label">PAN No.</label>
+                                    <input class="form-input" type="text" v-model="form.pan" placeholder="PAN No.">
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                    <div class="columns">
+                        <div class="column ">
+                            <div class="form-group">
+                                <label class="form-label">Subject line</label>
+                                <input class="form-input" type="text" v-model="form.subject" placeholder="Subject (optional)">
+                            </div>
+                        </div>
+                        <div class="column col-5">
                             <div class="form-group">
                                 <label class="form-label">Date</label>
                                 <input class="form-input" type="date" v-model="form.date" placeholder="25-04-2022">
                             </div>
                         </div>
                     </div>
-                    <div class="columns">
-                        <div class="column">
-                            <div class="form-group">
-                                <label class="form-label">GST No.</label>
-                                <input class="form-input" type="text" v-model="form.gst" placeholder="GST No.">
-                            </div>
-                        </div>
-                        <div class="column">
-                            <div class="form-group">
-                                <label class="form-label">PAN No.</label>
-                                <input class="form-input" type="text" v-model="form.pan" placeholder="PAN No.">
-                            </div>
-                        </div>
-                    </div>
                     <div class="form-group">
-                        <label class="form-label">Subject line</label>
-                        <input class="form-input" type="text" v-model="form.subject" placeholder="Subject (optional)">
+                        <label class="form-label">To</label>
+                        <textarea class="form-input" v-model="form.to" cols="30" rows="3"></textarea>
                     </div>
                     <div class="columns">
                         <div class="column">
@@ -194,7 +222,7 @@
     </form>
 </template>
 <script>
-import { addInvoice } from "@/firebase.js"
+import { addInvoice, getCompanies } from "@/firebase.js"
 export default {
 
     name: 'AddInvoiceForm',
@@ -203,7 +231,7 @@ export default {
         return {
             // payee: {},
             form: {
-                type: "Credit",
+                // type: "Credit",
                 phone: 0,
                 email: "",
                 from: "",
@@ -216,6 +244,9 @@ export default {
                 subject: "",
                 payment_detail: "",
             },
+            companies: [],
+            from: "",
+            to: "",
             loading: false,
             error: false,
             timeout: 0,
@@ -228,11 +259,21 @@ export default {
             let t = this.items.reduce((a, c) => { return a + (c.time * c.rate) }, 0)
             return t;
         },
-        no(){
+        no() {
             let d = this.form.date.toString()
             // console.log(d.replaceAll('-', ''))
-            return `SS/${d.replaceAll('-', '')}/000`
+            let initial = this.form.from ? this.form.from.splice(0, 2) : ""
+            initial = this.company ? this.company.initial : "SS"
+            return `${initial}/${d.replaceAll('-', '')}/000`
         },
+        company() {
+            return this.companies.find(c => c.id == this.from)
+        },
+    },
+    mounted() {
+        getCompanies().then(c => {
+            this.companies = c
+        })
     },
     methods: {
         newRow() {
@@ -242,10 +283,18 @@ export default {
             this.items.splice(index, 1)
         },
         addInvoice() {
-            console.log({...this.form, items: this.items, total: this.total, no: this.no})
-            addInvoice({...this.form, items: this.items, total: this.total, no: this.no}).then(s => {
+            let formdata = {
+                from: this.company.company || this.form.from,
+                phone: this.company.phone || this.form.phone,
+                email: this.company.email || this.form.email,
+                address: this.company.address || this.form.address,
+                gst: this.company.gst || this.form.gst,
+                pan: this.company.pan || this.form.pan,
+            }
+            console.log({ ...formdata, items: this.items, total: this.total, no: this.no })
+            /*addInvoice({ ...this.form, items: this.items, total: this.total, no: this.no }).then(s => {
                 console.log(s)
-            }).catch(e => console.warn(e))
+            }).catch(e => console.warn(e))*/
         },
     }
 }

@@ -20,6 +20,7 @@ const db = getFirestore(app);
 const payeesRef = collection(db, 'payees');
 const expenseRef = collection(db, 'expense');
 const invoicesRef = collection(db, 'invoices');
+const companyRef = collection(db, 'company');
 
 // Get a list of payees from your database
 
@@ -105,5 +106,22 @@ const addInvoice = async (content) => {
     return invRef
 }
 
+const getCompanies = async (content) => {
+    const comp = []
+    const q = query(companyRef, orderBy("company"));
+    const snapShot = await getDocs(q)
+
+    snapShot.docs.map(doc => {
+        comp.push({ id: doc.id, ...doc.data()})
+    })
+
+    return comp;
+}
+
+const addCompany = async (content) => {
+    const compRef = await addDoc(companyRef, content);
+    return compRef
+}
+
 const auth = getAuth();
-export { db, addPayee, getPayees, getPayeeById, updatePayee, getExpense, addExpense, getInvoices, addInvoice, auth }
+export { db, addPayee, getPayees, getPayeeById, updatePayee, getExpense, addExpense, getInvoices, addInvoice, auth, getCompanies, addCompany }
