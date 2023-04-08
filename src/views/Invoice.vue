@@ -2,7 +2,7 @@
     <section class="bg-secondary p-2 mb-3">
         <div class="d-flex align-center gap-1">
             <h3 class="mb-0">Invoices</h3>
-            <router-link to="/addinvoice" class="btn btn-primary btn-sm ">Add</router-link>
+            <router-link to="/addinvoice" class="btn btn-primary btn-sm "><i class="ri-add-line"></i> Add</router-link>
         </div>
     </section>
     <div class="container">
@@ -11,7 +11,7 @@
                 <table class="table compact table-striped table-hover">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th>#</th>
                             <th>No.</th>
                             <th>Date</th>
                             <th>From</th>
@@ -26,7 +26,7 @@
                     </thead>
                     <tbody>
                         <tr v-for="(p, index) in invoices" :key="index" :class="{'bg-error': p.bad, 'bg-success': p.pending == 0}">
-                            <td>{{p.id}}</td>
+                            <td>{{index}}</td>
                             <td>{{p.no}}</td>
                             <td>{{p.date}}</td>
                             <td>{{p.from}}</td>
@@ -36,7 +36,7 @@
                             <td>{{p.email}}</td>
                             <td>{{p.payment_mode}}</td>
                             <td>{{p.total}}</td>
-                            <td><button class="btn btn-sm" @click="setActiveInvoice(p.id)">Preview</button></td>
+                            <td><button class="btn btn-sm"><i class="ri-file-edit-line"></i></button><button class="btn btn-primary btn-sm" @click="setActiveInvoice(p.id)">Preview</button></td>
                         </tr>
                     </tbody>
                     <tfoot>
@@ -51,33 +51,35 @@
                 <br>
                 <hr>
                 <h5>Companies</h5>
-                <table class="table compact table-striped">
+                <table class="table compact table-striped table-hover">
                     <thead>
                         <tr>
-                            <td>Id</td>
+                            <td>#</td>
                             <td>Name</td>
                             <td>Address</td>
                             <td>Contact</td>
                             <td>Phone</td>
                             <td>Email</td>
-                            <td>GST</td>
-                            <td>PAN</td>
+                            <!-- <td>GST</td> -->
+                            <!-- <td>PAN</td> -->
+                            <td></td>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="c in companies">
-                            <td>{{c.id}}</td>
+                        <tr v-for="(c, index) in companies">
+                            <td>{{index}}</td>
                             <td>{{c.company}}</td>
                             <td>{{c.address}}</td>
                             <td>{{c.name}}</td>
                             <td>{{c.phone}}</td>
                             <td>{{c.email}}</td>
-                            <td>{{c.gst}}</td>
-                            <td>{{c.pan}}</td>
+                            <!-- <td>{{c.gst}}</td> -->
+                            <!-- <td>{{c.pan}}</td> -->
+                            <td><button class="btn btn-sm" @click="editCompany = c"><i class="ri-file-edit-line"></i></button></td>
                         </tr>
                     </tbody>
                 </table>
-                <add-company-form></add-company-form>
+                <add-company-form :formdata="editCompany" @clear-update="() => {editCompany = null}" @get-companies="fetchCompanies()"></add-company-form>
             </div>
             <div class="column" style="background-color: #D2C7BA;">
                 <!-- <div v-if="activeInvoice">
@@ -145,6 +147,7 @@ export default {
         return {
             invoices: [],
             companies: [],
+            editCompany: null,
             msg: "",
             balance: 0,
             totalDebit: 0,
@@ -162,7 +165,7 @@ export default {
             .catch(e => console.log(e))
         getCompanies().then(c => {
             this.companies = c
-        })
+        }).catch(e => console.warn(e))
     },
     methods: {
         setActiveInvoice(id) {
@@ -182,9 +185,13 @@ export default {
         humanDate(d) {
             return format(new Date(d), 'dd-MMM-yyyy')
         },
+        fetchCompanies() {
+            getCompanies().then(c => {
+                this.companies = c
+            }).catch(e => console.warn(e))
+        },
     }
 }
 </script>
 <style lang="css" scoped>
-
 </style>

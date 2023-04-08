@@ -2,9 +2,9 @@
     <div v-if="invoice">
         <div class="d-flex justify-center my-1">
             <div class="btn-group ">
-                <button class="btn btn-sm" @click="closePreview">Close</button>
-                <button class="btn btn-sm">Download</button>
-                <button class="btn btn-sm" @click="printInvoice">Print</button>
+                <button class="btn btn-sm" @click="closePreview"><i class="ri-close-line"></i> Close</button>
+                <button class="btn btn-sm"><i class="ri-download-line"></i> Download</button>
+                <button class="btn btn-sm" @click="printInvoice"><i class="ri-printer-line"></i> Print</button>
             </div>
         </div>
         <br>
@@ -26,7 +26,7 @@
             <!-- end logo -->
             <!-- start hero -->
             <tr>
-                <td align="center" >
+                <td align="center">
                     <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                         <tr>
                             <td align="center" bgcolor="#ffffff" style="padding: 5mm 5mm 0; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 12pt; ">
@@ -41,7 +41,7 @@
             </tr>
             <!-- end hero -->
             <tr>
-                <td align="center" >
+                <td align="center">
                     <table border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="white" style="max-width: 600px;">
                         <tr>
                             <td valign="top" style="padding: 2mm 5mm; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 11pt;"><strong>To: </strong>
@@ -55,7 +55,7 @@
             </tr>
             <!-- start copy block -->
             <tr>
-                <td align="center" >
+                <td align="center">
                     <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                         <!-- start copy -->
                         <tr>
@@ -106,6 +106,11 @@
                                             <td bgcolor="#ededed" style=" border-top: 1px dashed gray; border-bottom: 1px dashed gray;"></td>
                                             <td bgcolor="#ededed" colspan="3" style="padding: 1mm 2mm; font-size: 11pt; border-top: 1px dashed gray; border-bottom: 1px dashed gray;"><strong>Total</strong></td>
                                             <td bgcolor="#ededed" align="right" style="padding: 1mm 2mm; font-size: 11pt; border-top: 1px dashed gray; border-bottom: 1px dashed gray;"><strong>{{invoice.total}}</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td colspan="4" align="right" style="padding: 1mm; font-size: 10pt; color: gray;">In words ({{number2words(invoice.total)}})</td>
+                                            <!-- <td></td> -->
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -174,10 +179,26 @@ export default {
     },
     data() {
         return {
-            invoicedata: { id: "adfgs", from: "adgasdfs", to: "agpisfdiu" }
+            invoicedata: { id: "adfgs", from: "adgasdfs", to: "agpisfdiu" },
+            a: ['', 'one ', 'two ', 'three ', 'four ', 'five ', 'six ', 'seven ', 'eight ', 'nine ', 'ten ', 'eleven ', 'twelve ', 'thirteen ', 'fourteen ', 'fifteen ', 'sixteen ', 'seventeen ', 'eighteen ', 'nineteen '],
+            b: ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'],
         };
     },
     methods: {
+        number2words(num) {
+
+            if ((num = num.toString()).length > 9) return 'overflow';
+            let n = ('000000000' + num).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
+            if (!n) return;
+            let str = '';
+            str += (n[1] != 0) ? (this.a[Number(n[1])] || this.b[n[1][0]] + ' ' + this.a[n[1][1]]) + 'crore ' : '';
+            str += (n[2] != 0) ? (this.a[Number(n[2])] || this.b[n[2][0]] + ' ' + this.a[n[2][1]]) + 'lakh ' : '';
+            str += (n[3] != 0) ? (this.a[Number(n[3])] || this.b[n[3][0]] + ' ' + this.a[n[3][1]]) + 'thousand ' : '';
+            str += (n[4] != 0) ? (this.a[Number(n[4])] || this.b[n[4][0]] + ' ' + this.a[n[4][1]]) + 'hundred ' : '';
+            str += (n[5] != 0) ? ((str != '') ? 'and ' : '') + (this.a[Number(n[5])] || this.b[n[5][0]] + ' ' + this.a[n[5][1]]) + 'only ' : '';
+            return str;
+
+        },
         closePreview() {
             this.$emit("close-preview")
         },
@@ -292,7 +313,11 @@ img {
         visibility: visible;
     }
 
-    #print { position: absolute; top: 0; left: 0; }
+    #print {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
 
 }
 </style>

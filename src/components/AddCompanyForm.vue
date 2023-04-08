@@ -2,11 +2,11 @@
     <form action="" class="columns p-relative">
         <div class="column ">
             <div class="form-group">
-                <label class="form-label">Contact Name</label>
+                <label class="form-label">Contact Name *</label>
                 <input class="form-input" type="text" v-model="form.name" placeholder="Name">
             </div>
             <div class="form-group">
-                <label class="form-label">Company Name</label>
+                <label class="form-label">Company Name *</label>
                 <input class="form-input" type="text" v-model="form.company" placeholder="Company Name">
             </div>
             <div class="form-group">
@@ -30,22 +30,23 @@
         </div>
         <div class="column">
             <div class="form-group">
-                <label class="form-label">Address</label>
+                <label class="form-label">Address *</label>
                 <!-- <input class="form-input" type="text" v-model="form.remarks" placeholder="Some remark you want to add"> -->
                 <textarea v-model="form.address" cols="30" rows="4" class="form-input"></textarea>
             </div>
             <div class="columns ">
                 <div class="column col-4">
                     <div class="form-group">
-                        <label class="form-label">Initial</label><input type="text" class="form-input" v-model="form.initial">
+                        <label class="form-label">Initial *</label><input type="text" class="form-input" v-model="form.initial">
                     </div>
                 </div>
                 <div class="column ">
                     <div class="form-group">
                         <label class="form-label">&nbsp;</label>
-                        <button v-if="formdata" class="btn btn-primary" v-on:click.prevent="editPayee">Submit</button>
-                        <button v-else class="btn btn-primary" v-on:click.prevent="addNewCompany">Add</button>
-                        <router-link class="btn " to="/udhaar">Cancel</router-link>
+                        <button v-if="formdata" class="btn btn-primary" v-on:click.prevent="updateCompany">Update</button>
+                        <button v-else class="btn btn-primary" v-on:click.prevent="addCompany">Add</button>
+                        <button v-if="formdata" class="btn " @click.prevent="$emit('clear-update')">Cancel</button>
+                        <router-link v-else class="btn " to="/udhaar">Cancel</router-link>
                     </div>
                 </div>
                 <!-- <div class="divider-vert"></div> -->
@@ -68,7 +69,7 @@
 </template>
 <script>
 import { collection, getDocs } from "firebase/firestore";
-import { db, addCompany, updatePayee } from "@/firebase.js"
+import { db, addCompany, updateCompany } from "@/firebase.js"
 export default {
 
     name: 'AddCompanyForm',
@@ -102,7 +103,7 @@ export default {
     watch: {
         formdata() {
             if (this.formdata) {
-                this.form = this.formdata
+                this.form = JSON.parse(JSON.stringify(this.formdata))
             } else {
                 this.form = {
                     name: "",
@@ -118,9 +119,11 @@ export default {
         }
     },
     methods: {
-        addNewCompany() {
-            console.log(this.form)
-            if (this.form.name && this.form.email && this.form.mobile && this.form.initial) {
+        addCompany() {
+            // console.log(this.form)
+            if ((this.form.name || this.form.company) && this.form.initial && this.form.address) {
+                this.error = ""
+                console.info("Good to go")
                 addCompany(this.form)
                     .then(res => {
                         // console.log(res)
@@ -135,37 +138,49 @@ export default {
                             initial: "",
                         }
                         this.error = "Success"
-                        this.$router.push('/udhaar')
+                        // this.$router.push('/udhaar')
+                        this.$emit("get-companies")
                     })
                     .catch(e => {
                         console.log(e)
                         this.error = e
                     })
             } else {
-                this.error = "fields required"
+                if (!this.form.name || !this.form.company) {
+                    this.error = "Either 'Name' or 'Company' field required"
+                }
+                if (!this.form.address) {
+                    this.error = "Address is required"
+                }
+                if (!this.form.initial) {
+                    this.error = "Initial is required"
+                }
             }
         },
-        editPayee() {
-            if (this.form.name && this.form.amount && this.form.mobile && this.form.duedate) {
+        updateCompany() {
+            // if (this.form.name && this.form.amount && this.form.mobile && this.form.duedate) {
+            if ((this.form.name || this.form.company) && this.form.initial && this.form.address) {
                 console.log(this.form)
-                updatePayee(this.$route.params.id, this.form)
+                updateCompany(this.form.id, this.form)
                     .then(() => {
                         this.error = "Success"
-                        let interval = setInterval(() => {
-                            this.timeout += 100 / 7
-                        }, 500)
-                        setTimeout(() => {
-                            clearInterval(interval)
-                            this.error = false
-                            this.$router.push('/udhaar')
-                        }, 3500)
+                        this.$emit("get-companies")
+                        this.$emit('clear-update')
                     })
                     .catch(e => {
                         console.log(e)
                         this.error = e
                     })
             } else {
-                this.error = "fields required"
+                if (!this.form.name || !this.form.company) {
+                    this.error = "Either 'Name' or 'Company' field required"
+                }
+                if (!this.form.address) {
+                    this.error = "Address is required"
+                }
+                if (!this.form.initial) {
+                    this.error = "Initial is required"
+                }
             }
         }
     }

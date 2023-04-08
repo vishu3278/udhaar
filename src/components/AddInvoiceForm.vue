@@ -23,13 +23,13 @@
                 </div>
                 <div class="panel-body">
                     <div class="form-body">
-                        <label class="form-label">From </label>
-                        <select class="form-select" v-model="from">
+                        <label class="form-label">To </label>
+                        <select class="form-select" v-model="to">
                             <option value="" selected>Select Name | Company</option>
-                            <option v-for="comp in companies" :value="comp.id">{{comp.name}} | {{comp.company}}</option>
+                            <option v-for="comp in companies" :value="comp.id">{{comp.name || 'no name'}} | {{comp.company || 'no name'}}</option>
                         </select>
                     </div>
-                    <div v-if="from" class="card mt-2">
+                    <div v-if="to" class="card mt-2">
                         <div class="card-header">
                             <div class="card-title h5 text-primary">{{company.name}}</div>
                             <div class="card-subtitle text-bold">{{company.company}}</div>
@@ -45,7 +45,7 @@
                     <template v-else>
                         <div class="form-group">
                             <label class="form-label">From</label>
-                            <textarea class="form-input" v-model="form.from" cols="30" rows="3"></textarea>
+                            <textarea class="form-input" v-model="form.to" cols="30" rows="3"></textarea>
                             <!-- <input class="form-input" type="text" v-model="form.debit" placeholder="abc"> -->
                         </div>
                         <div class="columns">
@@ -92,8 +92,8 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">To</label>
-                        <textarea class="form-input" v-model="form.to" cols="30" rows="3"></textarea>
+                        <label class="form-label">From</label>
+                        <textarea class="form-input" v-model="form.from" cols="30" rows="3"></textarea>
                     </div>
                     <div class="columns">
                         <div class="column">
@@ -179,13 +179,17 @@
                                 <th colspan="4">Total</th>
                                 <th>{{total}}</th>
                             </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="5" align="right">In words ({{number2words(total)}})</td>
+                            </tr>
                         </tfoot>
                     </table>
                 </div>
                 <div class="panel-footer">
                     <div class="columns col-gapless">
                         <div class="column col-auto col-ml-auto">
-                            <button class="btn btn-primary" v-on:click.prevent="addInvoice">Add</button>
+                            <button class="btn btn-primary" v-on:click.prevent="addNewInvoice">Add</button>
                         </div>
                         <div class="divider-vert"></div>
                         <div class="column col-auto col-mr-auto">
@@ -250,7 +254,9 @@ export default {
             loading: false,
             error: false,
             timeout: 0,
-            items: [{ description: "", rate: 600.00, time: 1.0 }]
+            items: [{ description: "", rate: 600.00, time: 1.0 }],
+            a: ['', 'one ', 'two ', 'three ', 'four ', 'five ', 'six ', 'seven ', 'eight ', 'nine ', 'ten ', 'eleven ', 'twelve ', 'thirteen ', 'fourteen ', 'fifteen ', 'sixteen ', 'seventeen ', 'eighteen ', 'nineteen '],
+            b: ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'],
         }
     },
     computed: {
@@ -282,7 +288,19 @@ export default {
         removeRow(index) {
             this.items.splice(index, 1)
         },
-        addInvoice() {
+        number2words(num) {
+            if ((num = num.toString()).length > 9) return 'overflow';
+            let n = ('000000000' + num).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
+            if (!n) return;
+            let str = '';
+            str += (n[1] != 0) ? (this.a[Number(n[1])] || this.b[n[1][0]] + ' ' + this.a[n[1][1]]) + 'crore ' : '';
+            str += (n[2] != 0) ? (this.a[Number(n[2])] || this.b[n[2][0]] + ' ' + this.a[n[2][1]]) + 'lakh ' : '';
+            str += (n[3] != 0) ? (this.a[Number(n[3])] || this.b[n[3][0]] + ' ' + this.a[n[3][1]]) + 'thousand ' : '';
+            str += (n[4] != 0) ? (this.a[Number(n[4])] || this.b[n[4][0]] + ' ' + this.a[n[4][1]]) + 'hundred ' : '';
+            str += (n[5] != 0) ? ((str != '') ? 'and ' : '') + (this.a[Number(n[5])] || this.b[n[5][0]] + ' ' + this.a[n[5][1]]) + 'only ' : '';
+            return str
+        },
+        addNewInvoice() {
             let formdata = {
                 from: this.company.company || this.form.from,
                 phone: this.company.phone || this.form.phone,
@@ -292,9 +310,12 @@ export default {
                 pan: this.company.pan || this.form.pan,
             }
             console.log({ ...formdata, items: this.items, total: this.total, no: this.no })
-            /*addInvoice({ ...this.form, items: this.items, total: this.total, no: this.no }).then(s => {
+            addInvoice({ ...this.form, items: this.items, total: this.total, no: this.no })
+            .then(s => {
                 console.log(s)
-            }).catch(e => console.warn(e))*/
+                this.$router.push('/invoice')
+            })
+            .catch(e => console.warn(e))
         },
     }
 }

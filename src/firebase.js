@@ -122,6 +122,10 @@ const addCompany = async (content) => {
     const compRef = await addDoc(companyRef, content);
     return compRef
 }
+const updateCompany = async(id, content) => {
+    const compRef = await updateDoc(doc(db, 'company', id), content)
+    return compRef
+}
 
 const auth = getAuth();
-export { db, addPayee, getPayees, getPayeeById, updatePayee, getExpense, addExpense, getInvoices, addInvoice, auth, getCompanies, addCompany }
+export { db, addPayee, getPayees, getPayeeById, updatePayee, getExpense, addExpense, getInvoices, addInvoice, auth, getCompanies, addCompany, updateCompany }
