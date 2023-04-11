@@ -8,6 +8,7 @@ import AddPayeeView from '../views/AddPayeeView.vue'
 import EditPayeeView from '../views/EditPayeeView.vue'
 import Expense from '../views/Expense.vue'
 import Invoice from '../views/Invoice.vue'
+import Movies from '../views/Movies.vue'
 import AddExpenseView from '../views/AddExpenseView.vue'
 import AddInvoice from '../views/AddInvoice.vue'
 
@@ -27,6 +28,7 @@ const router = createRouter({
     { path: '/expense', name: 'expense', component: Expense },
     { path: '/addexpense', name: 'addexpense', component: AddExpenseView },
     { path: '/invoice', name: 'invoice', component: Invoice },
+    { path: '/movies', name: 'movies', component: Movies },
     { path: '/addinvoice', name: 'addinvoice', component: AddInvoice },
     {
       path: '/about',

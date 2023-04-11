@@ -9,6 +9,8 @@ import './assets/main.css'
 
 import './firebase.js'
 
+// import './constants.js'
+
 const app = createApp(App)
 
 app.use(router)
