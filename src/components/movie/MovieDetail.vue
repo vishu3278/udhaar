@@ -23,7 +23,7 @@
 import { api_key, base_uri, img_uri, profile_uri } from '../../constants.js'
 export default {
 
-    name: 'MovieCard',
+    name: 'MovieDetail',
     /*props: {
         movie: { type: Object }
     },*/

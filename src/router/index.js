@@ -9,7 +9,7 @@ import EditPayeeView from '../views/EditPayeeView.vue'
 import Expense from '../views/Expense.vue'
 import Invoice from '../views/Invoice.vue'
 import Movies from '../views/Movies.vue'
-import MovieDetail from '../views/MovieDetail.vue'
+import MovieDetail from '../components/movie/MovieDetail.vue'
 import AddExpenseView from '../views/AddExpenseView.vue'
 import AddInvoice from '../views/AddInvoice.vue'
 

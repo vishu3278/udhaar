@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDoc, getDocs, doc, addDoc, setDoc, updateDoc, query, orderBy, limit, where, onSnapshot } from "firebase/firestore";
+import { getFirestore, collection, getDoc, getDocs, doc, addDoc, setDoc, updateDoc, query, orderBy, limit, where, onSnapshot, arrayUnion, arrayRemove  } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 import { getAuth } from "firebase/auth";
@@ -68,6 +68,20 @@ const updatePayee = async (id, content) => {
     return upd
 }
 
+const addTransaction = async (id, content) => {
+    // payeeRef.update({transactions: firebase.firestore.FieldValue.arrayUnion(content)})
+    const upd = await updateDoc(doc(db, 'payees', id), {
+        transactions: arrayUnion(content)
+    });
+    return upd
+}
+
+const getTransactions = async (id) => {
+    // var payeeRef = doc(db, 'payees', id);
+    const docSnap = await getDoc(doc(db, "payees", id));
+    return docSnap.data().transactions
+}
+
 const getExpense = async () => {
     let exp = []
 
@@ -128,4 +142,4 @@ const updateCompany = async(id, content) => {
 }
 
 const auth = getAuth();
-export { db, addPayee, getPayees, getPayeeById, updatePayee, getExpense, addExpense, getInvoices, addInvoice, auth, getCompanies, addCompany, updateCompany }
+export { db, addPayee, getPayees, getPayeeById, updatePayee, addTransaction, getTransactions, getExpense, addExpense, getInvoices, addInvoice, auth, getCompanies, addCompany, updateCompany }

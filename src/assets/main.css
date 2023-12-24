@@ -179,6 +179,9 @@ header {
 .justify-center {
     justify-content: center;
 }
+.justify-between {
+    justify-content: space-between;
+}
 
 .bar .bar-item {
     transition: width 200ms linear;
