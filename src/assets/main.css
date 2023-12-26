@@ -44,6 +44,26 @@ header {
     padding-left: var(--space-3);
     padding-right: var(--space-3);
 }
+.btn-warning {
+    background-color: orange;
+    border-color: orange;
+    color: black;
+}
+.btn-warning:hover {
+    background-color: darkorange;
+    border-color: darkorange;
+    color: white;
+}
+.btn-info {
+    background-color: lightblue;
+    border-color: lightblue;
+    color: teal;
+}
+.btn-info:hover {
+    background-color: teal;
+    border-color: teal;
+    color: white;
+}
 
 .m-3 {
     margin: var(--space-3);

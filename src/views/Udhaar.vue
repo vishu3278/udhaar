@@ -58,12 +58,12 @@
                     <td><span v-show="p.pending == 0" class="label label-rounded label-success">Done</span> <span v-show="!p.bad && p.pending > 0" class="label label-rounded label-primary">Pending</span> <span v-show="p.bad" class="label label-rounded label-error">Bad</span></td>
                     <td>
                         <div class="btn-group ">
-                            <button class="btn btn-sm" @click="openTransaction(p)">Transactions</button>
-                            <div v-if="p.pending != 0" >
-                                <button class="btn btn-primary btn-sm" @click="donePayee(p.id)">Done</button>
-                                <router-link :to="'/editpayee/'+p.id" class="btn btn-warning btn-sm">Extend</router-link>
-                                <button v-if="!p.bad" class="btn btn-error btn-sm" @click="addBadPayee(p.id)">Bad</button>
-                            </div>
+                            <button class="btn btn-sm btn-info" @click="openTransaction(p)">Transactions</button>
+                            <!-- <div v-if="p.pending != 0" > -->
+                                <!-- <button class="btn btn-primary btn-sm" @click="donePayee(p)">Done</button> -->
+                                <router-link :to="'/editpayee/'+p.id" class="btn btn-warning btn-sm">Edit/Update</router-link>
+                                <button v-if="!p.bad" class="btn btn-error btn-sm" @click="addBadPayee(p.id)">Mark Bad</button>
+                            <!-- </div> -->
                         </div>
                     </td>
                 </tr>
@@ -92,7 +92,7 @@
             <a href="#close" class="modal-overlay" aria-label="Close" @click="closeTransaction"></a>
             <div class="modal-container">
                 <div class="modal-header">
-                    <a href="#close" class="btn btn-clear float-right" aria-label="Close" @click="closeTransaction"></a>
+                    <a href="#close" class="btn btn-clear float-right p-relative" aria-label="Close" style="z-index: 2;" @click="closeTransaction"></a>
                     <div class="modal-title h5">Transactions for {{payee?.name}}</div>
                 </div>
                 <div class="modal-body">
@@ -114,9 +114,10 @@
                                 </tr>
                             </tbody>
                         </table>
-                        
+                        <!-- <Transactions :payee="payee"></Transactions> -->
+
                         <div class="divider"></div>
-                        <template v-if="payee?.pending > 0">
+                        <!-- <template v-if="payee?.pending > 0"> -->
                             <h6>Add transaction</h6>
                             <div class="columns">
                                 <div class="column ">
@@ -138,7 +139,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </template>
+                        <!-- </template> -->
                     </div>
                 </div>
                 <div v-if="payee?.pending > 0" class="modal-footer d-flex justify-between">
@@ -155,15 +156,18 @@
     </div>
 </template>
 <script>
-// import { getPayees } from '../firebase.js'
-import { collection, getDocs } from "firebase/firestore";
-import { db, getPayees, updatePayee, addTransaction } from "@/firebase.js"
+// import Transactions from '@/components/udhaar/Transactions.vue'
+// import { collection, getDocs } from "firebase/firestore";
+import { getPayees, updatePayee, addTransaction } from "@/firebase.js"
 import { format, formatDistanceToNow, compareAsc } from 'date-fns'
 // import * as echarts from 'echarts';
 
 export default {
 
     name: 'Udhaar',
+    components: {
+        // Transactions,
+    },
 
     data() {
         return {
@@ -214,8 +218,9 @@ export default {
                     this.msg = e
                 })
         },
-        donePayee(id) {
-            updatePayee(id, { pending: 0, bad: false })
+        donePayee(payee) {
+            // console.log(payee)
+            updatePayee(payee.id, { pending: 0, bad: false })
                 .then(() => {
                     // console.log(res)
                     this.msg = "Success"

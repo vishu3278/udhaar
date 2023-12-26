@@ -118,9 +118,7 @@ export default {
                 this.msg = null
             }, duration)
         },
-        humanDate(d) {
-            return format(new Date(d), 'dd-MMM-yyyy')
-        },
+        
         searchMovie() {
             // url: `${base_uri}/search/movie?api_key=${api_key}&query=${q}`,
             axios.get(`${base_uri}/search/movie?api_key=${api_key}&query=${this.query}`)

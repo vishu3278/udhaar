@@ -6,12 +6,12 @@
                 <input class="form-input" type="text" v-model="form.name" placeholder="Name">
             </div>
             <div class="form-group">
-                <label class="form-label">Amount</label>
-                <input class="form-input" type="number" v-model="form.amount" placeholder="10xxx.xx">
+                <label class="form-label">Due Date</label>
+                <input class="form-input" type="date" v-model="form.duedate" placeholder="25-04-2022">
             </div>
             <div class="form-group">
-                <label class="form-label">Pending</label>
-                <input class="form-input" type="number" v-model="form.pending" placeholder="10xxx.xx">
+                <label class="form-label">Amount</label>
+                <input class="form-input" type="number" v-model="form.amount" placeholder="10xxx.xx">
             </div>
         </div>
         <div class="column col-6">
@@ -20,12 +20,13 @@
                 <input class="form-input" type="number" v-model="form.mobile" placeholder="98xxxxxxxx">
             </div>
             <div class="form-group">
-                <label class="form-label">Due Date</label>
-                <input class="form-input" type="date" v-model="form.duedate" placeholder="25-04-2022">
-            </div>
-            <div class="form-group">
                 <label class="form-label">Remarks</label>
                 <input class="form-input" type="text" v-model="form.remarks" placeholder="Some remark you want to add">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Pending</label>
+                <input class="form-input" type="number" v-model="form.pending" disabled placeholder="10xxx.xx">
+                <p class="form-input-hint">You can add transaction to see calculated pending amount.</p>
             </div>
         </div>
         <div v-if="error" class="column col-12">
@@ -54,8 +55,8 @@
     </form>
 </template>
 <script>
-import { collection, getDocs } from "firebase/firestore";
-import { db, addPayee, updatePayee, getPayees } from "@/firebase.js"
+// import { collection, getDocs } from "firebase/firestore";
+import { addPayee, updatePayee } from "@/firebase.js"
 export default {
 
     name: 'EditPayee',
@@ -127,7 +128,7 @@ export default {
         },
         editPayee() {
             if (this.form.name && this.form.amount && this.form.mobile && this.form.duedate) {
-                console.log(this.form)
+                // console.log(this.form)
                 updatePayee(this.$route.params.id, this.form)
                     .then(() => {
                         this.error = "Success"
