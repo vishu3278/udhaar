@@ -18,7 +18,7 @@
     </div>
 </template>
 <script>
-import EditPayeeForm from '@/components/EditPayeeForm.vue'
+import EditPayeeForm from '@/components/udhaar/EditPayeeForm.vue'
 import { getPayeeById, updatePayee } from '@/firebase.js'
 export default {
 

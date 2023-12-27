@@ -97,7 +97,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="content">
-                        <h6><span v-show="!transactions" class="text-error"><i class="icon icon-cross"></i> No </span> Past transactions</h6>
+                        <!-- <h6><span v-show="!transactions" class="text-error"><i class="icon icon-cross"></i> No </span> Past transactions</h6>
                         <table v-if="transactions" class="table table-striped table-hover">
                             <thead>
                                 <tr>
@@ -113,8 +113,8 @@
                                     <td>{{humanDate(t.paydate)}}</td>
                                 </tr>
                             </tbody>
-                        </table>
-                        <!-- <Transactions :payee="payee"></Transactions> -->
+                        </table> -->
+                        <Transactions :payee="payee"></Transactions>
 
                         <div class="divider"></div>
                         <!-- <template v-if="payee?.pending > 0"> -->
@@ -122,7 +122,7 @@
                             <div class="columns">
                                 <div class="column ">
                                     <div class="form-group ">
-                                        <label class="form-label">Amount</label>
+                                        <label class="form-label">Transaction amount</label>
                                         <input class="form-input input-sm" type="number" v-model="transaction.amount" placeholder="Amount">
                                     </div>
                                 </div>
@@ -143,12 +143,12 @@
                     </div>
                 </div>
                 <div v-if="payee?.pending > 0" class="modal-footer d-flex justify-between">
-                    <button class="btn btn-sm" @click="closeTransaction">Cancel</button>
+                    <button class="btn " @click="closeTransaction">Cancel</button>
                     <progress v-show="loading" class="progress" max="100"></progress>
-                    <button class="btn btn-sm btn-primary" @click="submitTransaction">Add</button>
+                    <button class="btn  btn-primary" @click="submitTransaction">Add</button>
                 </div>
                 <div v-else class="modal-footer">
-                    <button class="btn btn-sm" @click="closeTransaction">Close</button>
+                    <button class="btn " @click="closeTransaction">Close</button>
                     
                 </div>
             </div>
@@ -156,7 +156,7 @@
     </div>
 </template>
 <script>
-// import Transactions from '@/components/udhaar/Transactions.vue'
+import Transactions from '@/components/udhaar/Transactions.vue'
 // import { collection, getDocs } from "firebase/firestore";
 import { getPayees, updatePayee, addTransaction } from "@/firebase.js"
 import { format, formatDistanceToNow, compareAsc } from 'date-fns'
@@ -166,7 +166,7 @@ export default {
 
     name: 'Udhaar',
     components: {
-        // Transactions,
+        Transactions,
     },
 
     data() {
@@ -278,7 +278,16 @@ export default {
         },
         submitTransaction() {
             this.loading = true
-            addTransaction(this.transaction.id, { amount: this.transaction.amount, duedate: this.transaction.duedate, paydate: this.transaction.paydate }).then(res => {
+            let tt = this.payee.transactions ? this.payee.transactions.reduce((a,c) => a + c.amount, 0) : 0
+            let pending = this.payee.amount - (tt + this.transaction.amount)
+            console.log(this.transaction.amount, tt, pending)
+            // return
+            addTransaction(this.transaction.id, {
+                amount: this.transaction.amount,
+                duedate: this.transaction.duedate,
+                paydate: this.transaction.paydate,
+                pending
+            }).then(res => {
                 console.log(res)
                 this.loading = false
                 this.closeTransaction()

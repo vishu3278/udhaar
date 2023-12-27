@@ -21,7 +21,7 @@
                         <div class="panel-title">Past transactions</div>
                     </div>
                     <div class="panel-body">
-                        <!-- <transactions :payee="form"></transactions> -->
+                        <transactions :payee="form"></transactions>
                     </div>
                     <div class="panel-footer">
                     </div>
@@ -32,7 +32,7 @@
 </template>
 <script>
 import EditPayeeForm from '@/components/udhaar/EditPayeeForm.vue'
-// import Transactions from '@/components/udhaar/Transactions.vue'
+import Transactions from '@/components/udhaar/Transactions.vue'
 import { getPayeeById, updatePayee } from '@/firebase.js'
 import { format } from 'date-fns'
 export default {
@@ -40,7 +40,7 @@ export default {
     name: 'EditPayeeView',
     components: {
         EditPayeeForm,
-        // Transactions,
+        Transactions,
     },
 
     data() {

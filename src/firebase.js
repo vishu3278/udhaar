@@ -68,10 +68,13 @@ const updatePayee = async (id, content) => {
     return upd
 }
 
-const addTransaction = async (id, content) => {
-    // payeeRef.update({transactions: firebase.firestore.FieldValue.arrayUnion(content)})
+const addTransaction = async (id, payload) => {
+    console.log("firebase ->",payload)
+
+    // payeeRef.update({transactions: firebase.firestore.FieldValue.arrayUnion(payload)})
     const upd = await updateDoc(doc(db, 'payees', id), {
-        transactions: arrayUnion(content)
+        pending: payload.pending,
+        transactions: arrayUnion({amount: payload.amount, duedate: payload.duedate, paydate: payload.paydate})
     });
     return upd
 }

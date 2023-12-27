@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-if="!payee.transactions" class="empty">
+        <div v-if="!transactions" class="empty">
             <div class="empty-icon text-warning">
                 <i class="icon icon-cross"></i>
             </div>
@@ -19,7 +19,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(t, index) in payee.transactions">
+                <tr v-for="(t, index) in transactions">
                     <td>{{t.amount}}</td>
                     <td>{{humanDate(t.duedate)}}</td>
                     <td>{{humanDate(t.paydate)}}</td>
@@ -27,9 +27,9 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <th>{{transactionTotal}}</th>
-                    <th>Total paid</th>
-                    <th></th>
+                    <th>Amount = {{payee.amount}}</th>
+                    <th>Total paid = {{transactionTotal}}</th>
+                    <th>Pending = {{payee.pending}}</th>
                 </tr>
                 <tr>
                     <td colspan="3">
@@ -46,7 +46,7 @@ import { format } from 'date-fns'
 export default {
     name: "Transactions",
     props: {
-        payee,
+        payee: Object,
     },
     data() {
         return {
@@ -54,6 +54,9 @@ export default {
         }
     },
     computed: {
+        transactions(){
+            return this.payee?.transactions
+        },
         transactionTotal() {
             let tt = this.payee.transactions.reduce((a, c) => a + c.amount, 0)
             return tt
