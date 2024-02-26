@@ -25,6 +25,13 @@ header {
     box-shadow: 0 2px 8px rgba(100, 100, 90, 0.25);
 }
 
+.text-bold {
+    font-weight: bold;
+}
+.text-italic {
+    font-style: italic;
+}
+
 .greetings {
     padding: 0.25rem;
 }
@@ -139,7 +146,9 @@ header {
     margin-left: var(--space-5);
     margin-right: var(--space-5);
 }
-.mx-auto { margin-inline:auto; }
+.mx-auto {
+    margin-inline: auto;
+}
 
 .my-3 {
     margin-top: var(--space-3);

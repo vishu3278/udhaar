@@ -2,10 +2,11 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 
-import '../node_modules/spectre.css/dist/spectre.min.css'
-import '../node_modules/spectre.css/dist/spectre-icons.css'
+// import '../node_modules/spectre.css/dist/spectre.min.css'
+// import '../node_modules/spectre.css/dist/spectre-icons.css'
 import 'remixicon/fonts/remixicon.css'
-import './assets/main.css'
+// import './assets/main.css'
+import "./assets/base.css"
 
 import './firebase.js'
 

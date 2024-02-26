@@ -1,61 +1,69 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&display=swap');
+@tailwind base;
+@layer base {
+    h1 {
+        @apply text-5xl
+    }
 
-/* color palette from <https://github.com/vuejs/theme> */
-:root {
-    --vt-c-white: #ffffff;
-    --vt-c-white-soft: #f8f8f8;
-    --vt-c-white-mute: #f2f2f2;
+    h2 {
+        @apply text-3xl
+    }
 
-    --vt-c-black: #181818;
-    --vt-c-black-soft: #222222;
-    --vt-c-black-mute: #282828;
+    h3 {
+        @apply text-2xl
+    }
 
-    --vt-c-indigo: #2c3e50;
+    h4 {
+        @apply text-2xl
+    }
 
-    --vt-c-divider-light-1: rgba(60, 60, 60, 0.29);
-    --vt-c-divider-light-2: rgba(60, 60, 60, 0.12);
-    --vt-c-divider-dark-1: rgba(84, 84, 84, 0.65);
-    --vt-c-divider-dark-2: rgba(84, 84, 84, 0.48);
+    h5 {
+        @apply text-xl
+    }
 
-    --vt-c-text-light-1: var(--vt-c-indigo);
-    --vt-c-text-light-2: rgba(60, 60, 60, 0.66);
-    --vt-c-text-dark-1: var(--vt-c-white);
-    --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
-    --space-1: 0.25rem;
-    --space-2: 0.5rem;
-    --space-3: 1rem;
-    --space-4: 1.5rem;
-    --space-5: 2rem;
-    --space-6: 3rem;
+    table {
+        @apply border-gray-300 border-collapse
+    }
+
+    table thead {}
+    table tbody {}
+    table tfoot {}
+
+    table th {
+        @apply font-bold bg-slate-200 border border-solid border-slate-300 p-1
+    }
+    table td {
+        @apply border p-1
+    }
+
+    button { @apply border border-blue-500 text-blue-500 bg-white rounded-full px-4 py-1 }
+    button:hover { @apply text-white bg-blue-500 }
+    button:active { @apply ring-0  }
+
+    input, select, textarea { @apply border p-1 rounded }
+    input:focus, input:focus-visible, select:focus, select:focus-visible, textarea:focus, textarea:focus-visible { @apply outline-0 border-b-blue-200 }
+    label { @apply text-gray-500 }
 }
 
-/* semantic color variables for this project */
-:root {
-    --color-background: var(--vt-c-white);
-    --color-background-soft: var(--vt-c-white-soft);
-    --color-background-mute: var(--vt-c-white-mute);
+@tailwind components;
+@layer components {
+    
+    .btn { @apply border border-blue-500 text-blue-500 bg-white rounded-full px-4 py-1 }
+    .btn-sm { @apply px-3 py-0.5 }
+    .btn:hover { @apply text-white bg-blue-500 }
+    .btn:active { @apply ring ring-blue-200 }
 
-    --color-border: var(--vt-c-divider-light-2);
-    --color-border-hover: var(--vt-c-divider-light-1);
+    .form-group { @apply mb-2 }
+    .form-group label { @apply mb-1 }
+    .form-group .form-input { @apply block w-full }
 
-    --color-heading: var(--vt-c-text-light-1);
-    --color-text: var(--vt-c-text-light-1);
+    .table-striped tr:nth-child(even) td { @apply bg-slate-100 border-slate-200 }
 
-    --section-gap: 160px;
 }
+@tailwind utilities;
 
 @media (prefers-color-scheme: dark) {
-    :root {
-        --color-background: var(--vt-c-black);
-        --color-background-soft: var(--vt-c-black-soft);
-        --color-background-mute: var(--vt-c-black-mute);
-
-        --color-border: var(--vt-c-divider-dark-2);
-        --color-border-hover: var(--vt-c-divider-dark-1);
-
-        --color-heading: var(--vt-c-text-dark-1);
-        --color-text: var(--vt-c-text-dark-2);
-    }
+    
 }
 
 *,
@@ -82,9 +90,3 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-table th { font-weight: bold; color: var(--vt-c-indigo); }
-table.compact th,
-table.compact td { padding: 0.25rem; }
-
-table .bg-error td { background-color: rgb(250, 225, 220); color: darkred; }
-table .bg-success td { background-color: rgb(240, 250, 220); color: darkgreen; }

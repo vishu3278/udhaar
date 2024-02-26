@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="my-2">
         <div v-if="!transactions" class="empty">
             <div class="empty-icon text-warning">
                 <i class="icon icon-cross"></i>
@@ -10,7 +10,7 @@
                 <button class="btn btn-primary">Send a message</button>
             </div> -->
         </div>
-        <table v-else class="table table-striped table-hover">
+        <table v-else class="table table-striped table-hover w-full">
             <thead>
                 <tr>
                     <th>Amount</th>
@@ -19,7 +19,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(t, index) in transactions">
+                <tr v-for="(t, index) in transactions" class="text-center">
                     <td>{{t.amount}}</td>
                     <td>{{humanDate(t.duedate)}}</td>
                     <td>{{humanDate(t.paydate)}}</td>

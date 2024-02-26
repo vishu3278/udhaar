@@ -1,7 +1,7 @@
 <template>
     <section class="bg-secondary p-2 ">
         <div class="columns m-2">
-            <div class="column col-7">
+            <div class="column col-6">
                 <div class="columns">
                     <div class="column col-12">
                         <div class="card mb-3">
@@ -49,7 +49,7 @@
                     </div>
                 </div>
             </div>
-            <div class="column col-5">
+            <div class="column col-6">
                 <div class="card">
                     <!-- <div class="card-header">
                         <div class="card-title h5">Total</div>
