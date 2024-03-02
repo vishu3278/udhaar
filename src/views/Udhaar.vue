@@ -1,13 +1,13 @@
 <template>
-    <section class="bg-secondary p-2 mb-3">
-        <div class="columns m-2">
+    <section class="container my-4">
+        <div class="grid grid-cols-3 gap-4">
             <div class="column">
-                <div class="card bg-primary">
-                    <div class="card-header">
-                        <div class="card-title h5">
+                <div class="card bg-gradient-to-br from-blue-200 to-blue-400 rounded p-4">
+                    <div class="card-header text-blue-800">
+                        <div class="card-title ">
                             Total
-                            <strong class="float-right">{{ total }}</strong>
                         </div>
+                        <strong class="text-2xl">{{ total }}</strong>
                         <!-- <div class="card-subtitle text-gray">lorem ipsum</div> -->
                     </div>
                     <!-- <div class="card-body ">
@@ -15,25 +15,26 @@
                     </div> -->
                 </div>
             </div>
-            <div class="divider-vert"></div>
+            <!-- <div class="divider-vert"></div> -->
             <div class="column">
-                <div class="card bg-warning">
-                    <div class="card-header">
-                        <div class="card-title h5">
+                <div class="card bg-gradient-to-br from-yellow-200 to-yellow-400 rounded p-4">
+                    <div class="card-header text-amber-600">
+                        <div class="card-title ">
                             Pending
-                            <strong class="float-right">{{ pending }}</strong>
                         </div>
+                        <strong class="text-2xl">{{ pending }}</strong>
                         <!-- <div class="card-subtitle text-gray">lorem ipsum</div> -->
                     </div>
                 </div>
             </div>
-            <div class="divider-vert"></div>
+            <!-- <div class="divider-vert"></div> -->
             <div class="column">
-                <div class="card bg-error">
-                    <div class="card-header">
-                        <div class="card-title h5">
-                            Bad <strong class="float-right">{{ bad }}</strong>
+                <div class="card bg-gradient-to-br from-red-200 to-red-400 rounded p-4">
+                    <div class="card-header text-red-800">
+                        <div class="card-title ">
+                            Bad
                         </div>
+                        <strong class="text-2xl">{{ bad }}</strong>
                         <!-- <div class="card-subtitle text-gray">lorem ipsum</div> -->
                     </div>
                 </div>
@@ -42,7 +43,7 @@
         </div>
     </section>
     <div class="container">
-        <table class="table compact table-striped table-hover">
+        <table class="table compact table-striped table-hover w-full">
             <thead>
                 <tr>
                     <th># - Id</th>
@@ -71,22 +72,22 @@
                     </td>
                     <td>{{ p.remarks }}</td>
                     <td>
-                        <span v-show="p.pending == 0" class="label label-rounded label-success">Done</span>
-                        <span v-show="!p.bad && p.pending > 0" class="label label-rounded label-primary">Pending</span>
-                        <span v-show="p.bad" class="label label-rounded label-error">Bad</span>
+                        <span v-show="p.pending == 0" class="text-xs px-2 rounded-full bg-green-300 mr-1">Done</span>
+                        <span v-show="!p.bad && p.pending > 0" class="text-xs px-2 rounded-full bg-blue-300 mr-1">Pending</span>
+                        <span v-show="p.bad" class="text-xs px-2 rounded-full bg-rose-300 mr-1">Bad</span>
                     </td>
                     <td>
                         <div class="btn-group">
-                            <button class="btn btn-sm btn-info" @click="openTransaction(p)">
+                            <button class="btn btn-sm btn-info mr-1" @click="openTransaction(p)">
                                 Transactions
                             </button>
                             <!-- <div v-if="p.pending != 0" > -->
                             <!-- <button class="btn btn-primary btn-sm" @click="donePayee(p)">Done</button> -->
-                            <router-link :to="'/editpayee/' + p.id" class="btn btn-warning btn-sm">Edit/Update</router-link>
-                            <button v-if="!p.bad" class="btn btn-error btn-sm" @click="addBadPayee(p.id)">
+                            <router-link :to="'/editpayee/' + p.id" class="btn bg-amber-200 btn-sm border-amber-400 hover:bg-amber-400 text-amber-900 mr-1">Edit/Update</router-link>
+                            <button v-if="!p.bad" class="btn bg-rose-300 border-rose-300 text-rose-900 hover:bg-rose-500 hover:border-rose-500 btn-sm mr-1" @click="addBadPayee(p.id)">
                                 Mark Bad
                             </button>
-                            <button v-else class="btn btn-info btn-sm" @click="markNotBad(p.id)">Not Bad</button>
+                            <button v-else class="btn bg-purple-200 border-purple-200 text-purple-900 hover:bg-purple-400 hover:border-purple-400 btn-sm mr-1" @click="markNotBad(p.id)">Not Bad</button>
                             <!-- </div> -->
                         </div>
                     </td>
@@ -97,7 +98,6 @@
             <template v-slot:content>
                 <div class="content">
                     <Transactions :payee="payee"></Transactions>
-
                     <hr>
                     <h6 class="py-2 font-bold">Add transaction</h6>
                     <div class="grid grid-cols-3 gap-2">
@@ -113,7 +113,6 @@
                             <label class="form-label">Pay date</label>
                             <input class="form-input input-sm" type="date" v-model="transaction.paydate" placeholder="Pay date" />
                         </div>
-                        
                     </div>
                 </div>
             </template>
@@ -127,7 +126,7 @@
                         Add
                     </button>
                 </div>
-                <div v-else >
+                <div v-else>
                     <button class="btn" @click="closeTransaction">Close</button>
                 </div>
             </template>

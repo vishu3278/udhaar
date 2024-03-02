@@ -1,12 +1,12 @@
 <template>
-    <section class="bg-secondary p-2 ">
-        <div class="columns m-2">
-            <div class="column col-6">
-                <div class="columns">
-                    <div class="column col-12">
-                        <div class="card mb-3">
-                            <div class="card-body bg-primary">
-                                <h4 class="">{{total}}</h4>
+    <section class="py-1 px-4 ">
+        <div class="grid grid-cols-2 my-4">
+            <div class="column ">
+                <div class="grid grid-cols-2 gap-5">
+                    <div class="column col-span-2">
+                        <div class="card rounded-lg p-3 bg-gradient-to-br from-blue-200 to-blue-600">
+                            <div class="card-body ">
+                                <h4 class="font-bold text-blue-800">{{total}}</h4>
                             </div>
                             <div class="card-header">
                                 <div class="card-title h5">Total</div>
@@ -14,10 +14,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="column col-6">
-                        <div class="card">
-                            <div class="card-body bg-warning">
-                                <h4 class="">{{pending}}</h4>
+                    <div class="column ">
+                        <div class="card rounded-lg p-3 bg-gradient-to-br from-yellow-200 to-yellow-500">
+                            <div class="card-body ">
+                                <h4 class="font-bold text-amber-600">{{pending}}</h4>
                             </div>
                             <div class="card-header">
                                 <div class="card-title h5">Pending</div>
@@ -25,10 +25,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="column col-6">
-                        <div class="card">
-                            <div class="card-body bg-error">
-                                <h4 class="">{{bad}}</h4>
+                    <div class="column ">
+                        <div class="card rounded-lg p-3 bg-gradient-to-br from-red-200 to-red-600">
+                            <div class="card-body ">
+                                <h4 class="font-bold text-red-800">{{bad}}</h4>
                             </div>
                             <div class="card-header">
                                 <div class="card-title h5">Bad</div>
@@ -36,10 +36,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="column col-12">
-                        <div class="card mt-3">
-                            <div class="card-body bg-success">
-                                <h4 class="">{{recovered}}</h4>
+                    <div class="column col-span-2">
+                        <div class="card rounded-lg p-3 bg-gradient-to-br from-green-200 to-green-600">
+                            <div class="card-body ">
+                                <h4 class="font-bold text-green-800">{{recovered}}</h4>
                             </div>
                             <div class="card-header">
                                 <div class="card-title h5">Recovered</div>
@@ -49,7 +49,7 @@
                     </div>
                 </div>
             </div>
-            <div class="column col-6">
+            <div class="column ">
                 <div class="card">
                     <!-- <div class="card-header">
                         <div class="card-title h5">Total</div>
@@ -152,7 +152,7 @@ export default {
                     trigger: 'item'
                 },
                 title: {
-                    show: true,
+                    show: false,
                     text: "Udhaar Chart",
                     left: 'center',
                     // right: 'center',
@@ -205,7 +205,6 @@ export default {
                         // borderRadius: 4,
                         alignTo: 'labelLine',
                         rich: {
-                            
                             b: {
                                 color: '#4C5058',
                                 fontSize: 14,
@@ -229,7 +228,7 @@ export default {
                         { value: this.bad, name: 'Bad' },
                         { value: this.recovered, name: 'Recovered' },
                     ],
-                    color: ['#ffb700', '#e85600', '#32b643'],
+                    color: ['rgb(234, 179, 8)', 'rgb(220,38,38)', 'rgb(22, 163, 74)'],
                 }]
             };
 
@@ -240,4 +239,5 @@ export default {
 }
 </script>
 <style lang="css" scoped>
+    #chart { max-width:720px; }
 </style>

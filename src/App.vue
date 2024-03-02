@@ -9,10 +9,10 @@
     />
 
     <div class="time ml-5">
-      <div class="tile tile-centered">
+      <div class="tile flex items-center gap-2">
         <div class="tile-icon bg-primary">
-          <div class="example-tile-icon text-center p-1">
-            <i class="icon icon-time centered"></i>
+          <div class="text-xl text-center p-1">
+            <i class="ri-time-line"></i>
           </div>
         </div>
         <div class="tile-content">
@@ -84,14 +84,18 @@ header {
 
 nav {
   width: 100%;
-  font-size: 12px;
+  font-size: 14px;
   text-align: center;
 }
 
 nav a {
   display: inline-block;
   padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
+  @apply transition
+}
+
+nav a:hover {
+  @apply bg-teal-100 text-teal-800 ring ring-teal-400
 }
 
 nav a:first-of-type {
@@ -102,9 +106,9 @@ nav a:first-of-type {
 .tile .tile-title {
   line-height: 1.1;
 }
-.example-tile-icon {
-  width: 32px;
-  height: 32px;
+
+.router-link-exact-active {
+  @apply text-teal-800 font-bold ring ring-teal-400
 }
 
 @media (min-width: 1024px) {

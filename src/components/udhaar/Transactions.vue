@@ -1,11 +1,11 @@
 <template>
     <div class="my-2">
-        <div v-if="!transactions" class="empty">
-            <div class="empty-icon text-warning">
-                <i class="icon icon-cross"></i>
+        <div v-if="!transactions" class="empty text-center">
+            <div class="empty-icon animate-pulse text-amber-400 text-3xl">
+                <i class="ri-close-line "></i>
             </div>
-            <p class="empty-title h5">No Transactions</p>
-            <p class="empty-subtitle">found for the payee</p>
+            <p class="empty-title text-2xl text-amber-500">No Transactions</p>
+            <p class="empty-subtitle text-lg text-amber-500">found for the payee</p>
             <!-- <div class="empty-action">
                 <button class="btn btn-primary">Send a message</button>
             </div> -->

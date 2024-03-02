@@ -1,13 +1,13 @@
 <template>
     <transition name="modal-fade">
-        <div class="modal-overlay fixed inset-0 z-10 backdrop-grayscale flex flex-col items-center justify-center">
+        <div class="modal-overlay ">
             <!-- <a href="#close" class="modal-overlay" aria-label="Close" @click="closeModal"></a> -->
             <div class="modal-container bg-white p-3 rounded shadow-md">
                 <header class="modal-header flex items-center justify-between gap-2">
                     <div class="modal-title text-lg text-blue-500">
                         {{ title }}
                     </div>
-                    <a href="#close" class="btn-close px-1 text-slate-500 hover:bg-gray-200 rounded-full " aria-label="Close" @click="closeModal"><i class="ri-close-line"></i></a>
+                    <a class="btn-close px-1 text-slate-500 hover:bg-gray-200 rounded-full cursor-pointer" aria-label="Close" @click="closeModal"><i class="ri-close-line"></i></a>
                 </header>
                 <div class="modal-body">
                     <slot name="content">
@@ -104,7 +104,7 @@ export default {
 }*/
 
 .modal-overlay {
-    @apply bg-slate-300/80 
+    @apply bg-slate-300/80 fixed inset-0 z-10 backdrop-grayscale flex flex-col items-center justify-center
 }
 
 .modal-container {
@@ -132,13 +132,15 @@ export default {
 
 .modal-fade-enter,
 .modal-fade-leave-to {
-/*    opacity: 0;*/
-    @apply opacity-0
+    opacity: 0;
+    margin-top: -1rem;
+/*    @apply opacity-0*/
 }
 
 .modal-fade-enter-active,
 .modal-fade-leave-active {
-    transition: opacity .5s ease;
-/*    @apply transition-opacity */
+    margin-top: 0;
+    opacity: 1;
+    @apply transition 
 }
 </style>
