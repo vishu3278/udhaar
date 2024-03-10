@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&display=swap');
+@tailwind base;
+@layer base {
+    h1 {
+        @apply text-5xl
+    }
+
+    h2 {
+        @apply text-3xl
+    }
+
+    h3 {
+        @apply text-2xl
+    }
+
+    h4 {
+        @apply text-2xl
+    }
+
+    h5 {
+        @apply text-xl
+    }
+
+    table {
+        @apply border-gray-300 border-collapse
+    }
+
+    table thead {}
+    table tbody {}
+    table tfoot {}
+
+    table th {
+        @apply font-bold bg-slate-200 border border-solid border-slate-300 p-1
+    }
+    table td {
+        @apply border p-1
+    }
+
+    button { @apply border border-blue-500 text-blue-500 bg-white rounded-full px-4 py-1 }
+    button:hover { @apply text-white bg-blue-500 }
+    button:active { @apply ring-0  }
+
+    input, select, textarea { @apply border p-1 rounded }
+    input:focus, input:focus-visible, select:focus, select:focus-visible, textarea:focus, textarea:focus-visible { @apply outline-0 border-b-blue-200 }
+    label { @apply text-gray-500 }
+}
+
+@tailwind components;
+@layer components {
+    
+    .btn { @apply border border-blue-500 text-blue-500 bg-white rounded-full px-4 py-1 }
+    .btn-sm { @apply px-3 py-0.5 text-sm }
+    .btn:hover { @apply text-white bg-blue-500 }
+    .btn:active { @apply ring ring-blue-200 }
+
+    .form-group { @apply mb-2 }
+    .form-group label { @apply mb-1 }
+    .form-group .form-input { @apply block w-full }
+
+    .table-striped tr:nth-child(even) td { @apply bg-slate-100 border-slate-200 }
+
+}
+@tailwind utilities;
+
+@media (prefers-color-scheme: dark) {
+    
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    position: relative;
+    font-weight: normal;
+}
+
+body {
+    min-height: 100vh;
+    color: var(--color-text);
+    background: var(--color-background);
+    transition: color 0.5s, background-color 0.5s;
+    line-height: 1.425;
+    /*font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+    Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;*/
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 14px;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+

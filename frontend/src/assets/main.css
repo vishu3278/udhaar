@@ -1,0 +1,250 @@
+@import "./base.css";
+
+#app {
+    /*max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;*/
+
+    font-weight: normal;
+}
+
+a,
+.green {
+    text-decoration: none;
+    color: hsla(160, 100%, 37%, 1);
+    transition: 0.4s;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+header {
+    background: white;
+    box-shadow: 0 2px 8px rgba(100, 100, 90, 0.25);
+}
+
+.text-bold {
+    font-weight: bold;
+}
+.text-italic {
+    font-style: italic;
+}
+
+.greetings {
+    padding: 0.25rem;
+}
+
+.greetings h1 {
+    margin: 0;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.greetings h4 {
+    margin: 0;
+    line-height: 1;
+}
+
+.btn {
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
+}
+.btn-warning {
+    background-color: orange;
+    border-color: orange;
+    color: black;
+}
+.btn-warning:hover {
+    background-color: darkorange;
+    border-color: darkorange;
+    color: white;
+}
+.btn-info {
+    background-color: lightblue;
+    border-color: lightblue;
+    color: teal;
+}
+.btn-info:hover {
+    background-color: teal;
+    border-color: teal;
+    color: white;
+}
+
+.m-3 {
+    margin: var(--space-3);
+}
+
+.m-4 {
+    margin: var(--space-4);
+}
+
+.m-5 {
+    margin: var(--space-5);
+}
+
+.mt-3 {
+    margin-top: var(--space-3);
+}
+
+.mt-4 {
+    margin-top: var(--space-4);
+}
+
+.mt-5 {
+    margin-top: var(--space-5);
+}
+
+.mr-3 {
+    margin-right: var(--space-3);
+}
+
+.mr-4 {
+    margin-right: var(--space-4);
+}
+
+.mr-5 {
+    margin-right: var(--space-5);
+}
+
+.mb-3 {
+    margin-bottom: var(--space-3);
+}
+
+.mb-4 {
+    margin-bottom: var(--space-4);
+}
+
+.mb-5 {
+    margin-bottom: var(--space-5);
+}
+
+.ml-3 {
+    margin-left: var(--space-3);
+}
+
+.ml-4 {
+    margin-left: var(--space-4);
+}
+
+.ml-5 {
+    margin-left: var(--space-5);
+}
+
+.mx-3 {
+    margin-left: var(--space-3);
+    margin-right: var(--space-3);
+}
+
+.mx-4 {
+    margin-left: var(--space-4);
+    margin-right: var(--space-4);
+}
+
+.mx-5 {
+    margin-left: var(--space-5);
+    margin-right: var(--space-5);
+}
+.mx-auto {
+    margin-inline: auto;
+}
+
+.my-3 {
+    margin-top: var(--space-3);
+    margin-bottom: var(--space-3);
+}
+
+.my-4 {
+    margin-top: var(--space-4);
+    margin-bottom: var(--space-4);
+}
+
+.my-5 {
+    margin-top: var(--space-5);
+    margin-bottom: var(--space-5);
+}
+
+.p-3 {
+    padding: var(--space-3);
+}
+
+.p-4 {
+    padding: var(--space-4);
+}
+
+.p-5 {
+    padding: 2.5rem;
+}
+
+.gap-025 {
+    gap: var(--space-1);
+}
+
+.gap-05 {
+    gap: var(--space-2);
+}
+
+.gap-1 {
+    gap: var(--space-3);
+}
+
+.align-center {
+    align-items: center;
+}
+
+.align-start {
+    align-items: start;
+}
+
+.align-end {
+    align-items: end;
+}
+
+.align-stretch {
+    align-items: stretch;
+}
+
+.justify-center {
+    justify-content: center;
+}
+.justify-between {
+    justify-content: space-between;
+}
+
+.bar .bar-item {
+    transition: width 200ms linear;
+}
+
+.loading-wrapper {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.85);
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (hover: hover) {
+    a:hover {
+        background-color: hsla(160, 100%, 37%, 0.2);
+        text-decoration: none;
+    }
+}
+
+@media (min-width: 1024px) {
+    body {
+        /*display: flex;
+    place-items: center;*/
+    }
+
+    #app {
+        /*display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 2rem;*/
+    }
+}

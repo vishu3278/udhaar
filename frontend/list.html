@@ -1,0 +1,45 @@
+<!doctype html>
+   <html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+        <title>Remember Me</title>
+        <link href="css/metro.min.css" rel="stylesheet" type="text/css">
+        <link href="css/metro-responsive.min.css" rel="stylesheet" type="text/css">
+        <link href="css/metro-icons.min.css" rel="stylesheet" type="text/css">
+    </head>
+    <body onload="loadList()">
+       <div class="app-bar fixed-top">
+           <a href="index.html" class="app-bar-element"><span class="icon mif-chevron-left mif-2x"></span></a>
+            <a href="index.html" class="app-bar-element">Home</a>
+            <div class="app-bar-element place-right"><a class="dropdown-toggle fg-white"><span class="icon mif-menu mif-2x"></span>&nbsp;</a>
+                <div class="app-bar-drop-container place-right" data-role="dropdown" data-no-close="true">
+                    <ul class="v-menu">
+                        <li><a href="#"><span class="icon mif-user"></span>Register</a></li>
+                        <li><a href="#"><span class="icon mif-lock"></span> Login</a></li>
+                        <li class="divider"></li>
+                        <li><a href="list.html"><span class="icon mif-list"></span> List</a></li>
+                        <li><a href="#"><span class="icon mif-plus"></span> Add</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top:4em;">
+            <table id="listTable" class="table bordered">
+               <thead>
+                   <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Date</th>
+                    </tr>
+               </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </div>
+        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="js/metro.min.js"></script>
+        <script type="text/javascript" src="app.js"></script>
+    </body>
+</html>
