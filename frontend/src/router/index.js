@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Dashboard from '../views/Dashboard.vue'
+import Peoples from '../views/PeopleView.vue'
 import Udhaar from '../views/Udhaar.vue'
 import AddPayeeView from '../views/AddPayeeView.vue'
 import EditPayeeView from '../views/EditPayeeView.vue'
@@ -24,6 +25,7 @@ const router = createRouter({
     { path: '/login', name: 'login', component: Login },
     { path: '/logout', name: 'logout', component: Logout },
     { path: '/udhaar', name: 'udhaar', component: Udhaar },
+    { path: '/people', name: 'people', component: Peoples },
     { path: '/addpayee', name: 'addpayee', component: AddPayeeView },
     { path: '/editpayee/:id', name: 'editpayee', component: EditPayeeView },
     { path: '/expense', name: 'expense', component: Expense },

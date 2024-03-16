@@ -24,6 +24,7 @@
     <div class="wrapper">
       <nav>
         <RouterLink to="/">Dashboard</RouterLink>
+        <RouterLink to="/people">Peoples</RouterLink>
         <RouterLink to="/udhaar">Udhaar</RouterLink>
         <RouterLink to="/addpayee">New Payee</RouterLink>
         <RouterLink to="/expense">Expense</RouterLink>

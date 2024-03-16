@@ -47,13 +47,13 @@
                 <h4>Add people</h4>
 
                 <div class="form-group">
-                    <input type="text" v-model="name">
+                    <input type="text" v-model="name" placeholder="Name">
                 </div>
                 <div class="form-group">
-                    <input type="number" v-model="phone">
+                    <input type="number" v-model="phone" placeholder="Phone">
                 </div>
                 <div class="form-group">
-                    <input type="email" v-model="email">
+                    <input type="email" v-model="email" placeholder="Email">
                 </div>
                 <button @click="addPeople">Add</button>
             </aside>
