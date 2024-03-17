@@ -5,7 +5,7 @@
                 <i class="ri-close-line "></i>
             </div>
             <p class="empty-title text-2xl text-amber-500">No Transactions</p>
-            <p class="empty-subtitle text-lg text-amber-500">found for the payee</p>
+            <p class="empty-subtitle text-lg text-amber-500">found for {{payee?.name}}</p>
             <!-- <div class="empty-action">
                 <button class="btn btn-primary">Send a message</button>
             </div> -->
@@ -14,22 +14,22 @@
             <thead>
                 <tr>
                     <th>Amount</th>
-                    <th>Due date</th>
-                    <th>Pay date</th>
+                    <th>Date</th>
+                    <!-- <th>Pay date</th> -->
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="(t, index) in transactions" class="text-center">
                     <td>{{t.amount}}</td>
-                    <td>{{humanDate(t.duedate)}}</td>
-                    <td>{{humanDate(t.paydate)}}</td>
+                    <td>{{humanDate(t.date)}}</td>
+                    <!-- <td>{{humanDate(t.paydate)}}</td> -->
                 </tr>
             </tbody>
             <tfoot>
                 <tr>
-                    <th>Amount = {{payee.amount}}</th>
-                    <th>Total paid = {{transactionTotal}}</th>
-                    <th>Pending = {{payee.pending}}</th>
+                    <th>Amount = </th>
+                    <th>Total paid = </th>
+                    <!-- <th>Pending = {{payee.pending}}</th> -->
                 </tr>
                 <tr>
                     <td colspan="3">
@@ -47,6 +47,7 @@ export default {
     name: "Transactions",
     props: {
         payee: Object,
+        transactions: Array,
     },
     data() {
         return {
@@ -54,13 +55,13 @@ export default {
         }
     },
     computed: {
-        transactions(){
-            return this.payee?.transactions
-        },
-        transactionTotal() {
+        /*transactions(){
+            return this.transactions
+        },*/
+        /*transactionTotal() {
             let tt = this.payee.transactions.reduce((a, c) => a + c.amount, 0)
             return tt
-        }
+        }*/
     },
     methods: {
         humanDate(d) {

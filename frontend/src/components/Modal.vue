@@ -56,7 +56,7 @@
                         </div>
                     </slot>
                 </div>
-                <footer class="modal-footer flex justify-between">
+                <footer class="modal-footer ">
                     <slot name="footer">
                         <button class="btn " @click="closeModal">Close</button>
                         <button class="btn bg-teal-600 border-teal-600 hover:bg-teal-700 hover:border-teal-700 text-white" @click="submitForm">Okay</button>

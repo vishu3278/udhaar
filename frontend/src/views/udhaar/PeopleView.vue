@@ -1,14 +1,14 @@
 <template>
     <div class="about container">
-        <h2 class="text-3xl text-center py-5">About</h2>
+        <h2 class="text-3xl text-center py-5">Peoples</h2>
         <hr>
         <div class="grid grid-cols-2 gap-5 my-4">
             <main class="relative">
                 <section class="p-3 bg-slate-100 rounded mb-2">
                     <h5 class="mt-0 mb-3 text-teal-600">Peoples</h5>
                     <ol class="">
-                        <li v-for="u in users" :key="u.id" class="flex gap-2">{{u.id}} - {{u.name}} | {{u.phone}} | {{u.email}} <div class="ml-auto">
-                                <button class="btn btn-sm" @click="getPeople(u.id)">Edit</button> <button class="btn btn-sm bg-rose-400 border-rose-500 text-white hover:bg-rose-500" @click="deletePeople(u.id)">Delete</button>
+                        <li v-for="u in users" :key="u.id" class="flex items-center gap-2 py-1 divide-y divide-slate-400 divide-solid hover:bg-slate-200">{{u.id}} - {{u.name}} | {{u.phone}} | {{u.email}} <div class="ml-auto">
+                                <button class="btn btn-sm" @click="getPeople(u.id)">Edit</button> | <button class="btn btn-sm bg-rose-400 border-rose-500 text-white hover:bg-rose-500" @click="deletePeople(u.id)">Delete</button> | <button class="btn btn-sm" @click="getPeopleDetail(u.id)">Details</button>
                             </div>
                         </li>
                     </ol>
@@ -56,7 +56,7 @@ export default {
     methods: {
         loadPeople() {
             // console.log('inside method')
-            const us = axios.get(
+            axios.get(
                 import.meta.env.VITE_API_URL + "/people").then(res => {
                 // console.log(res.data)
                 this.users = res.data
@@ -105,7 +105,15 @@ export default {
                 this.loading = true
                 this.loadPeople()
             })
-        }
+        },
+        getPeopleDetail(id){
+            axios.get(
+                import.meta.env.VITE_API_URL + "/people/detail/" + id).then(p => {
+                console.log(p.data)
+                // let ppl = p.data[0]
+                
+            }).catch(err => console.warn(err))
+        },
     }
 }
 </script>
