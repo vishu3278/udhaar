@@ -15,21 +15,23 @@
                 <tr>
                     <th>Amount</th>
                     <th>Date</th>
-                    <!-- <th>Pay date</th> -->
+                    <th>Udhaar (id)</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="(t, index) in transactions" class="text-center">
                     <td>{{t.amount}}</td>
                     <td>{{humanDate(t.date)}}</td>
-                    <!-- <td>{{humanDate(t.paydate)}}</td> -->
+                    <td>{{(t.udhaar_id)}}</td>
                 </tr>
             </tbody>
             <tfoot>
                 <tr>
-                    <th>Amount = </th>
-                    <th>Total paid = </th>
-                    <!-- <th>Pending = {{payee.pending}}</th> -->
+                    <th colspan="3" class="text-right">
+                        Amount = {{totalUdhaar}}<br>
+                        Total paid = {{transactionTotal}}<br>
+                        Pending = {{totalUdhaar - transactionTotal}}
+                    </th>
                 </tr>
                 <tr>
                     <td colspan="3">
@@ -55,13 +57,13 @@ export default {
         }
     },
     computed: {
-        /*transactions(){
-            return this.transactions
-        },*/
-        /*transactionTotal() {
-            let tt = this.payee.transactions.reduce((a, c) => a + c.amount, 0)
+        totalUdhaar(){
+            return this.payee.udhaars.reduce((a, c) => a + Number(c.amount), 0)
+        },
+        transactionTotal() {
+            let tt = this.transactions.reduce((a, c) => a + Number(c.amount), 0)
             return tt
-        }*/
+        }
     },
     methods: {
         humanDate(d) {

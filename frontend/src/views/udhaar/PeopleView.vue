@@ -18,26 +18,44 @@
                 </div>
             </main>
             <aside class="bg-slate-200 rounded p-3">
-                <h4 class="text-indigo-500 mb-3">Add people</h4>
-                <div class="flex gap-2 ">
-                    <div class="form-group">
-                        <input type="text" v-model="name" placeholder="Name">
+                <template v-if="detail">
+                    <h4 class="text-indigo-500 mb-0 flex gap-3 items-center">{{detail.name}} <small class="text-slate-500 text-sm">({{detail.id}})</small> <button @click="detail = null" class="ml-auto text-sm">Close</button></h4>
+                    <p class="mb-3"><i class="ri-phone-line"></i> {{detail.phone}} - <i class="ri-mail-line"></i>{{detail.email}}</p>
+                    <div v-for="item in detail.udhaars" class="flex gap-5  border-t border-indigo-300 py-1">
+                        <p class="udhaar"><i class="ri-wallet-line"></i> {{item.amount}}</p>
+                        <div class="emi">
+                            <div v-for="trs in detail.transactions">
+                                <p v-if="trs.udhaar_id == item.id"><i class="ri-refund-line"></i> {{trs.amount}} - <i class="ri-calendar-line"></i> {{humanDate(trs.date)}}</p>
+                            </div>
+                        </div>
+                        
                     </div>
-                    <div class="form-group">
-                        <input type="number" v-model="phone" placeholder="Phone">
+
+                </template>
+                    
+                <div v-else>
+                    <h4 class="text-indigo-500 mb-3">Add people</h4>
+                    <div class="flex gap-2 ">
+                        <div class="form-group">
+                            <input type="text" v-model="name" placeholder="Name">
+                        </div>
+                        <div class="form-group">
+                            <input type="number" v-model="phone" placeholder="Phone">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" v-model="email" placeholder="Email">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <input type="email" v-model="email" placeholder="Email">
-                    </div>
+                    <button v-if="id" @click="updatePeople">Update</button>
+                    <button v-show="name && !id" @click="addPeople">Add</button>
                 </div>
-                <button v-if="id" @click="updatePeople">Update</button>
-                <button v-show="name && !id" @click="addPeople">Add</button>
             </aside>
         </div>
     </div>
 </template>
 <script>
 import axios from "axios"
+import { format, formatDistanceToNow, compareAsc } from "date-fns";
 export default {
     name: "People",
     data() {
@@ -48,18 +66,26 @@ export default {
             phone: "",
             email: "",
             loading: false,
+            detail: null,
         }
     },
     mounted() {
         this.loadPeople()
     },
     methods: {
+        humanDate(d) {
+            if (d) {
+                return format(new Date(d), "dd-MMM-yyyy");
+            } else {
+                return "-";
+            }
+        },
         loadPeople() {
             // console.log('inside method')
             axios.get(
                 import.meta.env.VITE_API_URL + "/people").then(res => {
                 // console.log(res.data)
-                this.users = res.data
+                this.users = res.data.data
                 this.loading = false
                 this.id = null
                 this.name = ""
@@ -111,6 +137,7 @@ export default {
                 import.meta.env.VITE_API_URL + "/people/detail/" + id).then(p => {
                 console.log(p.data)
                 // let ppl = p.data[0]
+                this.detail = p.data
                 
             }).catch(err => console.warn(err))
         },
